@@ -1,0 +1,230 @@
+\documentclass[a4paper]{article}
+
+% Packages
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, tikz, fullpage}
+
+\usepackage{subfigure}
+
+% Title
+\title{Homework 01}
+\author{Johan Boissard}
+\date\today
+
+% Header
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\setlength{\headsep}{15pt}
+\pagestyle{fancy}
+
+\fancyhf{}
+\lhead{Probabilités et statistiques}
+\chead{Série 21}
+\rhead{Johan Boissard}
+
+
+\begin{document}
+\section*{Exercice 2}
+\subsection*{a.)}
+
+Modèle ANOVA à deux voies avec intéractions
+\begin{eqnarray*}
+	Y_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{k}+\epsilon_{ijk}
+\end{eqnarray*}
+
+D'après
+\begin{eqnarray*}
+	\text{Total corrigé:} Y_{\dots}=\sum_{i=1}\sum_{j=1}\sum_{k=1}(y_{ijk}-y_{...})
+	\\
+	\hat{\alpha}_i=Y_{i..}-Y_{...}
+	\\
+	\hat{\beta}_j=Y_{.j.}-Y{...}
+	\\
+	\hat\gamma=Y{ij.}-\hat\alpha_i-\hat\beta_j
+	\\
+	r_{ijk}=Y_{ijk}-\hat\mu-\hat\alpha_i-\hat\beta_j-\hat\gamma_{ij}=Y{ijk}-\hat Y{ijk}
+\end{eqnarray*}
+On trouve le tableau suivant: \ref{table:2}
+
+% previous version disgusting !
+%\includegraphics[height=130mm]{la.jpeg}
+	
+% \begin{tabular}{l|r|r|r|r|r|}
+% 		& 1		& 2		& 3		& 4		& 5		\\
+% 	\hline
+% 	A	& 33	& 31	& 34	& 34	& 31	\\
+% 		& 36	& 31	& 36	& 33	& 31	\\
+% 	\hline
+% 	B	& 32	& 37	& 40	& 33	& 35	\\
+% 		& 35	& 35	& 36	& 36	& 36	\\
+% 	\hline
+% 	C	& 37	& 35	& 34	& 31	& 37	\\
+% 		& 39	& 35	& 37	& 35	& 40	\\
+% 	\hline
+% 	D	& 29	& 31 	& 33	& 31	& 33	\\
+% 		& 31	& 33	& 34	& 27	& 33	\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% 		& 34	& 34	& 36	& 33	& 35	\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% 	$\beta$ & 0	& -1	& 1.5	& -2	& .5	\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% $\gamma_{ij}$ & 1.5 & -2 & .5	& 2		& -3	\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% 	 	&  -2	& 1		& 1		& .5	& -1 	\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% 		& 2		& -1 	& -2	& -2	& 2		\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% 		& -1.5	& 1 	& .5	& -1	& 1		\\
+% 	\hline
+% 		& 		& 		& 		& 		& 		\\
+% 	\hline
+% Résidus$_{ijk}$ & -1.5 & 0 & -1	& .5	& 0	\\
+% 	\hline
+% 		& 1.5	& 0		& 1		& -1	& 0 		\\
+% 	\hline
+% 	 	&  -1.5	& 1		& 2		& -2	& -1 	\\
+% 	\hline
+% 		& 1.5 	& -1 	& -2	& 1.5	& .5		\\
+% 	\hline
+% 		& 	-1	& 0		& -2	& -2	& -2		\\
+% 	\hline
+% 		& 1		& 0 	& 1.5	& 2		& 1.5		\\
+% 	\hline
+% 		& 	-1	& -1	& -1	& 	2	& 0		\\
+% 	\hline
+% 		& 1		& 1 	& .5	& -2	& 0		\\
+% \end{tabular}
+	
+\begin{table}[tbp]
+\centering
+\caption{Table}
+\subtable[Problem]{
+\begin{tabular}{l|r|r|r|r|r||r|r|}
+	$Y_{ijk}=$	& 1		& 2		& 3		& 4		& 5 & &	$\alpha$	\\
+	\hline
+	A	& 33	& 31	& 34	& 34	& 31 & &	\\
+		& 36	& 31	& 36	& 33	& 31 &	33 & -1	\\
+	\hline
+	B	& 32	& 37	& 40	& 33	& 35 & &	\\
+		& 35	& 35	& 36	& 36	& 36 & 35.5 & 1.5	\\
+	\hline
+	C	& 37	& 35	& 34	& 31	& 37 & &	\\
+		& 39	& 35	& 37	& 35	& 40 & 36 &	2\\
+	\hline
+	D	& 29	& 31 	& 33	& 31	& 33 & &	\\
+		& 31	& 33	& 34	& 27	& 33 & 31.5 & -2.5	\\
+	\hline
+			\\
+	\hline
+		& 34	& 34	& 36	& 33	& 35 & 34	\\
+	\hline
+		\\
+	\hline
+	$\beta$ & 0	& -1	& 1.5	& -2	& .5 	\\
+	\hline
+\end{tabular}
+\label{h5ft5n}
+}
+
+\subtable[$\gamma$]{
+\begin{tabular}{l|r|r|r|r|r|}
+	$\gamma_{ij}$ &		& & & 	& \\
+		\hline
+		 	& 1.5 & -2 & .5	& 2		& -3	\\
+		\hline
+			& 		& 		& 		& 		& 		\\
+		\hline
+		 	&  -2	& 1		& 1		& .5	& -1 	\\
+		\hline
+			& 		& 		& 		& 		& 		\\
+		\hline
+			& 2		& -1 	& -2	& -2	& 2		\\
+		\hline
+			& 		& 		& 		& 		& 		\\
+		\hline
+			& -1.5	& 1 	& .5	& -1	& 1		\\
+		\hline
+			& 		& 		& 		& 		& 		\\
+		\hline
+\end{tabular}}
+
+\subtable[Residues]{
+\begin{tabular}{l|r|r|r|r|r|}
+	$r_{ijk}$ &		& & & 	& \\
+		\hline
+	 		& -1.5 & 0 & -1	& .5	& 0	\\
+		\hline
+			& 1.5	& 0		& 1		& -1	& 0 		\\
+		\hline
+		 	&  -1.5	& 1		& 2		& -2	& -1 	\\
+		\hline
+			& 1.5 	& -1 	& -2	& 1.5	& .5		\\
+		\hline
+			& 	-1	& 0		& -2	& -2	& -2		\\
+		\hline
+			& 1		& 0 	& 1.5	& 2		& 1.5		\\
+		\hline
+			& 	-1	& -1	& -1	& 	2	& 0		\\
+		\hline
+			& 1		& 1 	& .5	& -2	& 0		\\
+\end{tabular}
+
+}
+\label{table:2}
+\end{table}
+	
+\subsection*{c.)}
+See table \ref{table:1}
+	
+%% old version - with a jpg file -> disgusting	
+%\includegraphics[height=40mm]{la2.jpg}
+		
+\begin{table}[h!]
+	\center
+	\caption{Anova}
+	\begin{tabular}{lrrrr}
+		\textbf{Source} &	\textbf{SC} &	\textbf{dl} &	\textbf{CM} &	\textbf{F}	\\
+		Secrétaire 		& 40			& 4				& 10			& 3.45			\\
+		Machines		& 135			& 3				& 45			& 15.52			\\
+		Inter			& 83			& 12			& 6.92			& 2.39			\\
+		Erreur			& 58			& 20			& 2.9 			&				\\	
+		\hline
+		Total			& 316			& 39			&				&				\\
+	\end{tabular}
+	\label{table:1}
+\end{table}
+		
+		
+	\subsection*{d.)}
+	On teste l'hypothèse suivante: $H_0$: l'effet du facteur 1 (secrétaires)$=0$. Les degrés de liberté sont: $I-1=5-1=4$ et $IJ(K-1)=4*5*(2-1)=20$. On a $qF_{4,20}(0,95)=2.866$. Donc
+	\begin{eqnarray*}
+		F_{obs}=3.45>qF_{4,20}(0,95)=2.866
+	\end{eqnarray*}
+	L'hypothèse est donc rejetée
+	\\
+	On teste l'hypothèse suivante: $H_0$: l'effet du facteur 2 (machines)$=0$. Les degrés de liberté sont: $J-1=4-1=3$ et $IJ(K-1)=4*5*(2-1)=20$. On a $qF_{3,20}(0,95)=3.098$. Donc
+	\begin{eqnarray*}
+		F_{obs}=15.52>qF_{3,20}(0,95)=3.098
+	\end{eqnarray*}
+	L'hypothèse est donc également rejetée.
+	\\
+	On teste maintenant l'interaction. $H_0$: l'effet de l'intercation (secrétaire/machine)$=0$. Les degrés de liberté sont: $(I-1)(J-1)=(5-1)*(4-1)=12$ et $IJ(K-1)=4*5*(2-1)=20$. On a $qF_{12,20}(0,95)=2.278$. Donc
+	\begin{eqnarray*}
+		F_{obs}=2.39>qF_{12,20}(0,95)=2.278
+	\end{eqnarray*}
+	L'hypothèse est également rejetée.
+\end{document}

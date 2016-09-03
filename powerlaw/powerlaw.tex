@@ -1,0 +1,145 @@
+%
+%  untitled
+%
+%  Created by Johan Boissard [] on 2010-06-24.
+%  Copyright (c) Johan Boissard. All rights reserved.
+% hhh
+
+\documentclass[a4paper,titlepage] {scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{engord}
+%\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath, amssymb}
+\usepackage{comment}
+
+\usepackage{listings}
+
+%allows inclusion of url (hyperref is better than url) 
+%ref: http://www.fauskes.net/nb/latextips/
+\usepackage{hyperref}
+
+%package for chemistry ie: \ce{(NH4)2SO4 -> NH4+ + 2SO4^2-} 
+%ref:www.ctan.org/tex-archive/macros/latex/contrib/mhchem/mhchem.pdf
+\usepackage[version=3]{mhchem}
+%celsius + degrees
+\usepackage{gensymb}
+%to get last page
+\usepackage{lastpage} % \pageref{LastPage}
+
+%make use of the fullpage (no HUGE margins)
+\usepackage{fullpage}
+\usepackage{subfig}
+
+
+%\renewcommand{\chaptername}{Laboratory}
+%\setcounter{chapter}{5}
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames, table]{xcolor}
+% Include this somewhere in your document
+
+
+
+\usepackage[absolute]{textpos}
+
+%column  of multi row in tables
+\usepackage{multirow}
+
+%to have vertical text in table
+\usepackage{rotating}
+
+
+%%%%%%% a virer ici!!!!
+\begin{comment}
+%Fonts and Tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+
+\definecolor{shade}{HTML}{D4D7FE}	%light blue shade
+\definecolor{text1}{HTML}{272727}		%text is almost black
+\definecolor{headings}{HTML}{173849} 	%dark blue %%%dark red 70111
+\definecolor{title}{HTML}{173849} 	%dark blue %%%dark red 70111
+
+\usepackage{titlesec}				%custom \section
+\end{comment}
+
+
+
+
+
+
+
+\author{Johan Boissard}
+\date{\today}
+\title{Micro- \& Macro- Economics}
+\begin {document}
+
+%\maketitle
+%\tableofcontents
+
+\section{Power-Law} % (fold)
+\label{sec:power_law}
+
+\paragraph{PDF} % (fold)
+\label{par:pdf}
+
+% paragraph pdf (end)
+\begin{equation}
+	f_X(x) = Cx^{-\alpha}
+\end{equation}
+defined for $\Gamma\in(x_{min}, \infty)$ and $\alpha<1$
+
+
+
+% section power_law (end)
+
+\paragraph{Normalizing} % (fold)
+\label{par:normalizing}
+$\int_{\Gamma} f_X(x)dx=1$ which gives
+\begin{equation}
+	C = \frac{\alpha-1}{x_{min}^{1-\alpha}}
+\end{equation}
+and thus
+\begin{equation}
+	f_X(x)= \frac{1-\alpha}{x_{min}}\left(\frac{x}{x_{min}}\right)^{-\alpha}.
+\end{equation}
+% paragraph normalizing (end)
+
+\paragraph{CDF} % (fold)
+\label{par:cdf}
+\begin{equation}
+	F_X(x) = 1 - \left(\frac{x}{x_{min}}\right)^{1-\alpha}
+\end{equation}
+% paragraph cdf (end)
+
+\paragraph{Expected value} % (fold)
+\label{par:expected_value}
+\begin{equation}
+	\mathbb E(X) = \int_\Gamma xf_X(x)dx =
+	\begin{cases}
+		\frac{\alpha-1}{\alpha-2}x_{min},& \alpha>2\\
+		\infty, & \text{else}
+	\end{cases}
+\end{equation}
+% paragraph expected_value (end)
+
+\paragraph{MLE best estimator} % (fold)
+\label{par:mle_best_estimator}
+$\hat x_{min}$ is the smallest $x_i$ in the data (pretty obvious ..) and
+\begin{equation}
+	\hat \alpha = 1 + n\left(\sum_{i=1}^n\ln{\frac{x_i}{x_{min}}}\right)^{-1}
+\end{equation}
+% paragraph mle_best_estimator (end)
+
+
+\section{M-files} % (fold)
+\label{sec:m_files}
+misc general \/ power\_law.m
+% section m_files (end)
+
+\end{document}

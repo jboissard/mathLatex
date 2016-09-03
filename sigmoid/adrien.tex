@@ -1,0 +1,118 @@
+%
+%  untitled
+%
+%  Created by Johan Boissard [] on 2010-06-24.
+%  Copyright (c) Johan Boissard. All rights reserved.
+% hhh
+
+\documentclass[a4paper,titlepage] {scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{engord}
+%\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{comment}
+
+\usepackage{listings}
+
+%allows inclusion of url (hyperref is better than url) 
+%ref: http://www.fauskes.net/nb/latextips/
+\usepackage{hyperref}
+
+%package for chemistry ie: \ce{(NH4)2SO4 -> NH4+ + 2SO4^2-} 
+%ref:www.ctan.org/tex-archive/macros/latex/contrib/mhchem/mhchem.pdf
+\usepackage[version=3]{mhchem}
+%celsius + degrees
+\usepackage{gensymb}
+%to get last page
+\usepackage{lastpage} % \pageref{LastPage}
+
+%make use of the fullpage (no HUGE margins)
+\usepackage{fullpage}
+\usepackage{subfig}
+
+%allows separating cell in table by diagonal line
+\usepackage{slashbox}
+
+
+
+
+%\renewcommand{\chaptername}{Laboratory}
+%\setcounter{chapter}{5}
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames, table]{xcolor}
+% Include this somewhere in your document
+
+
+
+\usepackage[absolute]{textpos}
+
+%column  of multi row in tables
+\usepackage{multirow}
+
+%to have vertical text in table
+\usepackage{rotating}
+
+
+%%%%%%% a virer ici!!!!
+\begin{comment}
+%Fonts and Tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+
+\definecolor{shade}{HTML}{D4D7FE}	%light blue shade
+\definecolor{text1}{HTML}{272727}		%text is almost black
+\definecolor{headings}{HTML}{173849} 	%dark blue %%%dark red 70111
+\definecolor{title}{HTML}{173849} 	%dark blue %%%dark red 70111
+
+\usepackage{titlesec}				%custom \section
+\end{comment}
+
+
+
+
+
+
+
+\author{Johan Boissard}
+\date{\today}
+\title{Regression S-curve}
+\begin {document}
+
+%\maketitle
+%\tableofcontents
+
+\section{Théorie}
+Je sais pas ce que tu entends par sigmoide (il y a plusieurs types: logit, $tanh$, $\frac{x}{\sqrt{1+x^2}}$, ...), je te propose ici une méthode pour trouver les paramètres de la S-curve (sigmoide) pour 
+\begin{equation}
+	f(t)= \frac{K}{1+e^{-a-bt}}=\frac{K}{1+Ce^{-bt}}
+\end{equation}
+où $K$ est la valeur de saturation ($\lim_{t\rightarrow\infty}f(t)=K$). $a$ et $b$, deux paramètres que tu vas déterminer et $C=e^{-a}$.
+
+Cette dernière me paraît la plus naturelle, car elle est la résolution de l'équation différentielle suivante
+\begin{equation}
+	\dot f = k(N-f)f
+\end{equation}
+
+En prenant le log des deux côtés et en reformant un peu, tu obtiens:
+\begin{equation}
+	z=\ln{\frac{f}{K-f}}=a+bt
+\end{equation}
+Qui est cette fois une fonction linéraire. Pour trouver $a$ et $b$, il te suffit de faire une imple régression linéaire sur excel par exemple.
+
+\section{Pratique (excel)}
+\begin{enumerate}
+	\item créer deux colonnes, $f$ (ordonnée) et $t$ (abscisse).
+	\item déterminer graphiquement la valeur de saturation (faire le graph et voir vers quoi la fonction tend, $K$)
+	\item créer une nouvelle colonne avec comme valeur $z=\ln{\frac{f}{K-f}}$, où $K$ est la valeur vers laquelle la fonction tend.
+	\item faire une régression linéaire pour $z=a+bt$
+\end{enumerate}
+
+
+Voilà, j'espère que ca réout ton problème, ++
+\end{document}

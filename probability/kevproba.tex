@@ -1,0 +1,174 @@
+%
+%  untitled
+%
+%  Created by Johan Boissard [] on 2010-06-24.
+%  Copyright (c) Johan Boissard. All rights reserved.
+% hhh
+
+\documentclass[a4paper,titlepage] {scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{engord}
+%\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath, amssymb}
+\usepackage{comment}
+
+\usepackage{listings}
+
+%allows inclusion of url (hyperref is better than url) 
+%ref: http://www.fauskes.net/nb/latextips/
+\usepackage{hyperref}
+
+%package for chemistry ie: \ce{(NH4)2SO4 -> NH4+ + 2SO4^2-} 
+%ref:www.ctan.org/tex-archive/macros/latex/contrib/mhchem/mhchem.pdf
+\usepackage[version=3]{mhchem}
+%celsius + degrees
+\usepackage{gensymb}
+%to get last page
+\usepackage{lastpage} % \pageref{LastPage}
+
+%make use of the fullpage (no HUGE margins)
+\usepackage{fullpage}
+\usepackage{subfig}
+
+%allows separating cell in table by diagonal line
+\usepackage{slashbox}
+
+
+
+
+%\renewcommand{\chaptername}{Laboratory}
+%\setcounter{chapter}{5}
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames, table]{xcolor}
+% Include this somewhere in your document
+
+
+
+\usepackage[absolute]{textpos}
+
+%column  of multi row in tables
+\usepackage{multirow}
+
+%to have vertical text in table
+\usepackage{rotating}
+
+
+%%%%%%% a virer ici!!!!
+\begin{comment}
+%Fonts and Tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+
+\definecolor{shade}{HTML}{D4D7FE}	%light blue shade
+\definecolor{text1}{HTML}{272727}		%text is almost black
+\definecolor{headings}{HTML}{173849} 	%dark blue %%%dark red 70111
+\definecolor{title}{HTML}{173849} 	%dark blue %%%dark red 70111
+
+\usepackage{titlesec}				%custom \section
+\end{comment}
+
+
+
+
+
+
+
+\author{Johan Boissard}
+\date{\today}
+\title{Micro- \& Macro- Economics}
+\begin {document}
+
+%\maketitle
+%\tableofcontents
+
+\section{Probabilité: concepts}
+
+\begin{itemize}
+	\item Sum of probability
+	\begin{equation}
+		P(A\cup B) = P(A) + P(B) - P(A\cap B)
+	\end{equation}
+	\item Multiplication (when independent)
+	\begin{equation}
+		P(A\cap B) = P(A)P(B)
+	\end{equation}
+	\item Conditional probability
+	\begin{equation}
+		P(A|B) = \frac{P(A\cap B)}{P(B)}
+	\end{equation}
+\end{itemize}
+
+\subsection{Fonctions de probabilités}
+\begin{itemize}
+	\item Fonction de densité (pdf)
+	\begin{eqnarray}
+		f_X(x) &\in& [0,1]\\
+		\int_{-\infty}^{\infty}f_X(x)dx &=& 1
+	\end{eqnarray}
+	\item Fonction de répartition (cdf)
+	\begin{eqnarray}
+		F_X(x) &=& \int_{-\infty}^xf_X(y)dy\\
+		F_X'(x) &=& f_X(x)\\		
+		F_X(-\infty) &=& 0\\
+		F_X(+\infty) &=& 1\\
+		\mathbb P(a\leq X\leq b) &=& \int_a^bf_X(x)dx = F(b)-F(a)\\
+		\mathbb P( X\leq a) &=& \int_{-\infty}^af_X(x)dx = F(a)
+	\end{eqnarray}
+\end{itemize}
+
+\subsection{Espérance $\mathbb E(\cdot)=\mu_{\cdot}$}
+\emph{First moment}
+\begin{itemize}
+	\item discrete
+	\begin{equation}
+		\mathbb E(X) = \sum x_iP(x_i)=\sum x_if_X(x_i)
+	\end{equation}
+	\item continuous
+	\begin{equation}
+		\mathbb E(X) = \int_{\mathbb R} xf_X(x)dx 
+	\end{equation}
+\end{itemize}
+\emph{Second Moment}
+\begin{equation}
+	\mathbb E(X^2) = \int_{\mathbb R} x^2f_X(x)dx 
+\end{equation}
+\emph{In general}
+\begin{equation}
+	\mathbb E(g(X)) = \int_{\mathbb R} g(x)f_X(x)dx
+\end{equation}
+\subsubsection{Properties}
+\begin{eqnarray}
+	\mathbb E(X+a) &=& \mathbb E(X)+a\\
+	\mathbb E(cX) &=& c\mathbb E(X)\\
+	\mathbb E(X+Y) &=& \mathbb E(X) + \mathbb E(Y)
+\end{eqnarray}
+if $X$ and $Y$ are independent:
+\begin{equation}
+	\mathbb E(XY) = \mathbb E(X)\mathbb E(Y)
+\end{equation}
+
+\subsection{Variance $\mathop{Var}(\cdot)=\sigma_{\cdot}^2$}
+\emph{Centered ($X-\mu$) second moment}
+\begin{eqnarray}
+	\mathop{Var}(X) &=& \mathbb E[(X-\underbrace{\mu}_{\mathbb E(X)})^2]\\
+	&=& \mathbb E(X^2)-\mathbb E^2(X)\\
+	&=& \int_{\mathbb R}(x-\mu)^2f_X(x)dx
+\end{eqnarray}
+
+\subsubsection{Properties}
+\begin{eqnarray}
+	\mathop{Var}(c) &=& 0\\
+	\mathop{Var}(X+c) &=& \mathop{Var}(X)\\
+	\mathop{Var}(cX) &=& c^2\mathop{Var}(X)\\
+	\mathop{Var}(X\pm Y) &=& \mathop{Var}(X)+\mathop{Var}(Y)\pm 2\mathop{Cov}(X,Y)
+\end{eqnarray}
+where $c$ is a constant
+
+
+\end{document}

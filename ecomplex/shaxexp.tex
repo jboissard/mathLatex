@@ -1,0 +1,74 @@
+%
+%  untitled
+%
+%  Created by Johan Boissard [] on 2010-04-21.
+%  Copyright (c) Johan Boissard. All rights reserved.
+% hhh
+\documentclass[a4paper]{article}
+
+
+% Packages
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amssymb}
+%allows to write on whole page
+\usepackage{fullpage}
+
+
+%package for page numbering and footer
+\usepackage{fancyhdr}
+%to get last page
+\usepackage{lastpage} % \pageref{LastPage}
+%allows inclusion of graphics
+\usepackage{graphics}
+\DeclareGraphicsExtensions{.pdf, .jpeg,.jpg}
+%allows drawing
+%ref:http://www.texample.net/
+\usepackage{tikz}
+
+%allows inclusion of url (hyperref is better than url) 
+%ref: http://www.fauskes.net/nb/latextips/
+\usepackage{hyperref}
+
+%package for chemistry ie: \ce{(NH4)2SO4 -> NH4+ + 2SO4^2-} 
+%ref:www.ctan.org/tex-archive/macros/latex/contrib/mhchem/mhchem.pdf
+\usepackage[version=3]{mhchem}
+
+%comments (begin{comment})
+\usepackage{comment}
+
+% Title
+\title{}
+\author{Johan Boissard}
+\date\today
+
+% Header
+
+
+\pagestyle{fancy}
+%delete current header & footer configuration
+\fancyhf{} 
+\fancyhead[EL]{Titel} %Kopfzeile links
+%\fancyhead[C]{} %zentrierte Kopfzeile
+%\fancyhead[LE,RO]{Name} %Kopfzeile rechts
+%head separation line 
+%\renewcommand{\headrulewidth}{0.4pt} 
+%foot separation line
+%\renewcommand{\footrulewidth}{0.4pt}
+%page number
+\fancyfoot[OL]{\thepage\ of \pageref{LastPage}}
+%\fancyfoot[ER]{\thepage}
+
+\begin{document}
+\begin{eqnarray}
+	\label{eq1} 
+	(e^{x})^y=e^{xy}&x,y\in\mathbb R
+\end{eqnarray}
+since
+\begin{eqnarray}
+	\underbrace{(e^{j2\pi})^{1/3}}_{1}\neq e^{j\frac{2}{3}\pi}=\frac{\sqrt{3}}{2}+j\frac{1}{2}
+\end{eqnarray}
+quels sont les conditions sur $x, y$ pour étendre \ref{eq1} aux domaines des complexes ?
+\end{document}
