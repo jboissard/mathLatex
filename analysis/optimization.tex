@@ -1,0 +1,193 @@
+\chapter{Optimization}
+\section{Basic Concepts. Unconstrained Optimization}
+In an optimizing problem, the objective is to \emph{optimize} (maximize or minimize) some function $f$ ($\mathbb R^n\rightarrow \mathbb R$). This function $f$ is called the \emph{objective function} and takes as parameter a vector $\mathbf{x}=(x_1,\dots,x_n)$ of $n$ variables. These are called \emph{control variables}.
+
+In many problems, the control variables is subject to some \emph{constraints} that are usually expressed in terms of inequalities (for example: $x_1\geq0$).
+
+\subsection{Unconstrained Optimization}
+
+By definition, $f$ has a \textbf{minimum} at a point $\mathbf{x}=\mathbf{x_0}$ iff
+\begin{eqnarray}
+	f(\mathbf{x})\geq f(\mathbf{x_0})
+\end{eqnarray}
+
+Similarly, $f$ has a \textbf{maximum} at a point $\mathbf{x}=\mathbf{x_0}$ iff
+\begin{eqnarray}
+	f(\mathbf{x})\leq f(\mathbf{x_0})
+\end{eqnarray}
+
+Furthermore, $f$ is said to have a \textbf{local minimum} at $\mathbf{x_0}$ if 
+\begin{eqnarray}
+	f(\mathbf{x})\geq f(\mathbf{x_0})
+\end{eqnarray}
+for all $x$ in a neighborhood of $\mathbf{x_0}$, that is
+\begin{eqnarray}
+	|\mathbf{x}-\mathbf{x_0}|=\left((x_1-x_{0_1})^2+\dots+(x_n-x_{0_n})^2\right)^{1/2}<r
+\end{eqnarray}
+for an  arbitrarily chosen $r$.
+
+If $f$ is differentiable and has an extremum at point $\mathbf{x_0}$ then that point satisfies
+\begin{eqnarray}
+	\nabla f(\mathbf{x_0})=0
+\end{eqnarray}
+
+This condition necessary but not sufficient. However, for $n=1$, $\frac{df}{dx}=0$ and $\frac{d^2f}{dx^2}<0$ assure a maximum.
+
+\subsection{Method of steepest descent or gradient method}
+The idea of this method is to find a maximum of $f$ by repeatedly computing mimima of a function $g(t)$ of a single variable $t$.
+\begin{eqnarray}
+	\mathbf{z}(t)=\mathbf{x}-\nabla f(\mathbf{x_n})
+	%\\
+	%\mathbf{x_n}=\mathbf{x_{n-1}}-\nabla f(\mathbf{x_n})
+\end{eqnarray} 
+at which the function
+\begin{eqnarray}
+	g(t)=f(\mathbf{z}(t))
+\end{eqnarray}
+has a minimum. \textbf{z}(t) is the next approximation to $\mathbf{x_0}$.
+
+\begin{myExample}
+	Minimize $f(\mathbf{x})=\frac{1}{2}x_1^2+\frac{9}{2}x_2^2$.
+	
+	$d_k = \nabla f(\mathbf{x_k})=(-x_{1_k},-9x_{2_k})$
+	
+	Pour calculer le pas $t$, il faut résoudre
+	\begin{eqnarray*}
+		\min_t f(\mathbf{x_k}-t\nabla f(\mathbf{x_k}))
+	\end{eqnarray*}
+	
+	Dans ce cas, la solution est
+	\begin{eqnarray*}
+		t=\frac{x_{1_k}^2+81x_{2_k}^2}{x_{1_k}^2+729x_{2_k}^2}
+	\end{eqnarray*}
+	
+	La méthode de la plus forte pente génère à chaque itération le point
+	\begin{eqnarray*}
+		\mathbf{x_{k+1}}=\mathbf{x_k}+\frac{x_{1_k}^2+81x_{2_k}^2}{x_{1_k}^2+729x_{2_k}^2}(-x_{1_k},-9x_{2_k}).
+	\end{eqnarray*}
+\end{myExample}
+
+\section{Optimization under constraints: linear}
+One seeks to solve
+\begin{eqnarray}
+	\min f &=& c_1x_1+c_2x_2+ ... c_nx_n\\
+\end{eqnarray}
+subject to (s.t.)
+\begin{eqnarray}
+	\begin{cases}
+		a_{11}x_1+a_{12}x_2 + ... + a_{1n}x_n \geq b_1\\
+		a_{21}x_1+a_{22}x_2 + ... + a_{2n}x_n \geq b_2\\
+		...\\
+		a_{m1}x_1+a_{m2}x_2 + ... + a_{mn}x_n \geq b_m
+	\end{cases}
+\end{eqnarray}
+which can also be written
+\begin{eqnarray}
+	\min f &=& \mathbf{c}^T\cdot \mathbf{x}
+	\\
+	A \mathbf{x} &\geq& \mathbf{b}\\
+	\mathbf{x}&\geq&0
+\end{eqnarray}
+where $A\in\mathbb R^{m\times n}$, $\mathbf{b}\in\mathbb R^{m\times1}$, $\mathbf{c}\in\mathbb R^{n\times 1}$ and $\mathbf{x}\in\mathbb R^{n\times 1}$
+
+
+Can be solved with the simplex method.
+
+\subsection{Dual problem}
+the dual is defined
+\begin{equation}
+	\max w = \mathbf{b}^T\cdot\mathbf{y}
+\end{equation}
+subject to
+\begin{eqnarray}
+	A^T \mathbf{y} &\leq& \mathbf{c}\\
+	\mathbf{y}&\geq&0
+\end{eqnarray}
+where $y\in\mathbb R^{m\times 1}$ (shadow prices).
+
+When problems are solved $f = w$.
+
+
+\subsubsection{General Duality Rule}
+\begin{center}
+\begin{tabular}{|ccc|}
+\hline
+\textbf{Maximization problem} & & \textbf{Minimization problem}\\
+\hline
+\emph{constraints}& & \emph{variables}\\
+$\leq$ &$\leftrightarrow$ & $\geq0$\\
+$\geq$ &$\leftrightarrow$ & $\leq0$\\
+$=$ &$\leftrightarrow$ & unrestricted\\
+\hline
+\emph{variables} & &\emph{constraints}\\
+$\geq0$ &$\leftrightarrow$ & $\geq$\\
+$\leq0$ &$\leftrightarrow$ & $\leq$\\
+unrestricted &$\leftrightarrow$ & $=$\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Optimization under constraints: non-linear}
+
+\subsection{Multiplicateurs de Lagrange}
+Method to solve an optimization problem under constraints.
+
+The problem writes
+\begin{eqnarray}
+	\max f(\mathbf{x})\\
+	\text{s.t.}\nonumber
+	\\
+	\mathbf{g}(\mathbf{x})=0\nonumber
+\end{eqnarray}
+where $f: \mathbb R^n\rightarrow\mathbb R$ and $g: \mathbb R^n\rightarrow\mathbb R^n$.
+
+A new function $\Lambda$ is introduced
+\begin{eqnarray}
+	\Lambda(\mathbf{\lambda}, \mathbf{x}) 
+	&=& f( \mathbf{x})+\sum_{i=1}^n\lambda_ig_i(\mathbf{x})\\
+	&=& f( \mathbf{x})+\mathbf{\lambda} \mathbf{g}(\mathbf{x})
+\end{eqnarray}
+where $\mathbf{\lambda}$ is a $1\times n$ vector.
+
+The solution reads
+
+\begin{eqnarray}
+	\nabla \Lambda 
+	=
+	\begin{pmatrix}
+		\frac{\partial \Lambda}{\partial x_1}\\
+		\vdots\\
+		\frac{\partial \Lambda}{\partial x_n}\\
+		\frac{\partial \Lambda }{\partial \lambda_1}\\
+		\vdots\\
+		\frac{\partial \Lambda }{\partial \lambda_n}
+	\end{pmatrix}
+	=0
+\end{eqnarray}
+Note: pas tout a fait sûr pour plusieurs contraintes: a checker
+
+
+\subsection{Kuhn-Tucker theorem}
+Kuhn Tucker is a generalization of Lagrange.
+Consider the maximization problem
+\begin{equation}
+	\max f( \mathbf{x})
+\end{equation}
+subject to
+\begin{equation}
+	g_i( \mathbf{x})\leq 0; i=1.. k
+\end{equation}
+Note that $f, g_i: \mathbb R^n\rightarrow \mathbb R$.
+
+Then for a solution $\mathbf{x^*}$ to the maximization problem there exists Kuhn-Tucker multipliers $\lambda_1,...,\lambda_n\in\mathbb R$ such that
+
+\begin{eqnarray}
+	\nabla f( \mathbf{x^*})&=& \sum_{i=1}^k \lambda_i\nabla g_i( \mathbf{x^*})\\
+	\label{eq:ktcond1}
+	\lambda_i&\geq&0 \forall i\\
+	\label{eq:ktcond2}
+	\lambda &=& 0 \text{ if } g_i( \mathbf{x^*})<0
+\end{eqnarray}
+
+Note that the derivatives have to be taken on $\mathbf{x}$ and all $\lambda_i$ then one does not have to care about eq \ref{eq:ktcond1} and \ref{eq:ktcond2}.
+

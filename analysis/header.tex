@@ -1,0 +1,51 @@
+\documentclass{scrbook}
+
+% Packages
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, fullpage, fancyhdr,comment, tikz, graphics, framed, fullpage, gensymb}
+\usepackage{makeidx}		% makeindex
+\makeindex
+\usetikzlibrary{shapes,arrows}
+%\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+
+% Title
+\title{Analyse}
+\author{Johan Boissard}
+\date\today
+
+% Header
+\setlength{\headheight}{15.2pt}
+\setlength{\headsep}{15pt}
+\pagestyle{fancy}
+
+\fancyhf{}
+\lhead{}
+\chead{}
+\rhead{Johan Boissard}
+
+\newenvironment{myEverything}[5]{%
+  \def\FrameCommand{\fboxrule=#3 \fboxsep=#4 \fcolorbox{#1}{#2}}
+  \MakeFramed {\advance\hsize-\width \FrameRestore}% \width
+  \vspace{#3}\vspace{-11mm}\vspace{\baselineskip}\paragraph{#5}%
+}{%
+  %\vspace{-1mm}
+  \endMakeFramed%
+}
+%%% E X E M P L E
+\definecolor{exShadecolor}{rgb}{0.95,0.95,1.0}
+\definecolor{exBordercolor}{rgb}{0.5,0.5,1.0}
+\newenvironment{myExample}[1][Exemple]%
+{  \begin{myEverything}{exBordercolor}{exShadecolor}{.2mm}{4mm}{#1}\begin{small}  }%
+{  \end{small}\end{myEverything}  }
+
+%%% D E F I N I T I O N
+\definecolor{dfShadecolor}{rgb}{0.9,1.0,0.9}
+\definecolor{dfBordercolor}{rgb}{0.5,1.0,0.5}
+\newenvironment{myDefinition}[1][Définition]{  \begin{myEverything}{dfBordercolor}{dfShadecolor}{.2mm}{4mm}{#1}  }{  \end{myEverything}  }
+
+%%% T H E O R E M
+\definecolor{thShadecolor}{rgb}{1.0,0.9,0.9}
+\definecolor{thBordercolor}{rgb}{1.0,0.5,0.5}
+\newenvironment{myTheorem}[1][Théorème]{  \begin{myEverything}{thBordercolor}{thShadecolor}{1mm}{4mm}{#1}  }{  \end{myEverything}  }

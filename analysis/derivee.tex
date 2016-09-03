@@ -1,0 +1,280 @@
+%!TEX root = /Users/Johan/Documents/University/Math/Gymnase/book/book.tex
+\chapter{Dérivée}
+\section{Fonction composée}
+\begin{myDefinition}
+	$y=f(u)$ $u=g(x)$ $y=f(g(x))=(f\circ g)(x)$
+\end{myDefinition}
+\begin{myExample}
+	
+	
+	$y=f(u)=\sqrt{u}$ 
+	\\
+	$u=g(x)=x^2+1$
+	\\
+	$y=(f\circ g)(x)$
+	Calculer $f'(x)$.
+	
+	\begin{eqnarray*}
+		f'(u)=\frac{1}{2}u^{-\frac{1}{2}}
+		\\
+		g'(x)=2x
+		\\
+		(f\circ g)'(x)=f'(g(x))g'(x)=\frac{x}{\sqrt{x^2+1}}
+	\end{eqnarray*}
+\end{myExample}
+\begin{eqnarray}
+	f'(x)=\frac{dy}{dx}(x)=\lim_{\Delta x\rightarrow 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}
+\end{eqnarray}
+\begin{eqnarray}
+	\frac{d}{dx}(af(x))=a\frac{d}{dx}f(x)
+	\\
+	\frac{d}{dx}\left(f(x)+g(x)\right)=	\frac{d}{dx}f(x)+\frac{d}{dx}g(x)
+	\\
+	\frac{d}{dx}\left((f\circ g)(x)\right)=(f \circ g)' = (f'\circ g) \cdot g'
+	\\
+	(f\cdot g)'=f'\cdot g+f\cdot g'
+	\\
+	\frac{f}{g}=\frac{f'\cdot g-f\cdot g'}{g^2}
+\end{eqnarray}
+
+\textbf{Exemple:}
+
+\begin{eqnarray*}
+	\left(7\frac{x^2+x+5}{e^{2x}}\right)'
+\end{eqnarray*}
+On peut récrire sous la forme suivante
+\begin{eqnarray}
+	\left(a\frac{f}{g}\right)'=a\left(\frac{f}{g}\right)'=a\frac{f'\cdot g-f\cdot g'}{g^2}
+\end{eqnarray}
+où $a=7$, $f=x^2+x+5$ et $g=e^{2x}$. 
+
+On a $f'(x)=2x+1$ et $g'(x)=2e^{2x}$ et obtient donc:
+\begin{eqnarray*}
+	\left(7\frac{x^2+x+5}{e^{2x}}\right)'=7\frac{e^{2x}((2x+1)-2\cdot(x^2+x+5))}{4e^{4x}}
+	=-\frac{7}{4}\frac{2x^2+9}{e^{2x}}
+\end{eqnarray*}
+
+Pour $y=f(x)\Rightarrow dy=f'(x)\Delta x=f'(x)dx$, on a $dx=\Delta x$ \underline{\textbf{mais}} $dy\neq\Delta y$!
+
+\begin{eqnarray}
+	\Delta y=f(x+\Delta x)-f(x)\text{ ou }	\Delta y+f(x)=f(x+\Delta x)
+\end{eqnarray}
+
+\begin{myExample}
+	$y=3x^2-5$, $x=2$ et $\Delta x=0.1$
+	Calculer $\Delta y$ et $dy$.
+	
+	Tout d'abord on remarque que $\Delta x=dx$ et $f'(x)=6x$.
+	\begin{eqnarray*}
+		\Delta y=f(x+\Delta x)-f(x)=f(2.1)-f(2)=1.23
+	\end{eqnarray*}
+	et
+	\begin{eqnarray*}
+		dy=\frac{dy}{dx}dx=f'(x)dx=f'(x)\Delta x=f'(2)\cdot0.1=1.2
+	\end{eqnarray*}
+	
+\end{myExample}
+
+\section{Dérivée de fonctions implicites}
+si $y^4+3y-4x^3=5x+1$ défini sur une fonction implicite $f(x)$, alors on dérive tous les termes par $x$ et on factorise par $y'$.
+\begin{eqnarray*}
+	(y^4)'+(3y)'-(4x^3)'=(5x)'+(1)'=
+	\\
+	4y^3y'+3y'-12x^2=5
+	\\
+	y'(4y^3+3)=12x^2+5
+\end{eqnarray*}
+et
+\begin{eqnarray*}
+	y'=f'(x)=\frac{12x^2+5}{4(f(x))^3+3}
+\end{eqnarray*}
+\begin{myExample}
+	Taux liés
+	
+	Soit $x^3-2y^2+5x=16$, $\frac{dx}{dt}=4$, $x=2$, $y=-1$ et $\frac{dy}{dt}=?$
+	\begin{eqnarray*}
+		\frac{d}{dt}(x^3)'-\frac{d}{dt}(2y^2)'+\frac{d}{dt}(5x)'=\frac{d}{dt}(16)
+		\\
+		3x^2\frac{dx}{dt}-4y\frac{dy}{dt}+5\frac{dx}{dt}=0
+		\\
+		3\cdot2^2\cdot4-4\cdot(-1)\frac{dy}{dt}+5\cdot 4=0
+		\\
+		\Rightarrow \frac{dy}{dt}=\frac{-20-48}{4}=-17
+	\end{eqnarray*}
+\end{myExample}
+\chapter{Applications de la dérivée}
+\section{Extremums}
+Si $f(x)$ est continue et que $f'(x)=0$ a une solution cette dernière est un point critique (max, min, point de selle).
+
+\begin{myExample}
+	\begin{eqnarray*}
+		f(x)=2\sin{(x)}+\cos{(2x)}
+		\\
+		f'(x)=2\cos{(x)}-2\sin{(2x)}=2\cos{(x)}-4\sin{(x)}\cos{(x)}=2\cos{(x)}(1-2\sin{(x)})
+	\end{eqnarray*}
+	Il nous faut donc trouver les solutions du système d'équation suivant
+	\begin{eqnarray*}
+		\begin{cases}
+			\cos{(x)}=0
+			\\
+			1-2\sin{(x)}=0 \Leftrightarrow \frac{1}{2}=\sin{(x)}
+		\end{cases}	
+	\end{eqnarray*}
+	La solution de la première équation est $x=(1+2k)\pi$, la résolution de la deuxième équation est un peu plus délicate mais on trouve
+	\begin{eqnarray*}
+		x=\begin{cases}
+			\frac{\pi}{6}+2k\pi
+			\\
+			-\frac{\pi}{6}+(1+2k)\pi
+		\end{cases}
+	\end{eqnarray*}
+	Les extremums de $f(x)$ sont donc donnés par
+	\begin{eqnarray*}
+		x=\begin{cases}
+			(1+2k)\pi
+			\\
+			\frac{\pi}{6}+2k\pi
+			\\
+			-\frac{\pi}{6}+(1+2k)\pi
+		\end{cases}
+	\end{eqnarray*}
+	avec $k\in\mathbb Z$.
+\end{myExample} 
+
+\section{Théorème des accroissements finis}
+Si $f$ est une fonction continue sur l'intervalle fermé $[a,b]$ est dérivable sur l'intervalle ouvert $]a,b[$, tel que $a<b$ et $f(a)=f(b)$. $f'(c)=0$, avec $c\in]a,b[$, en au moins un point de $]a,b[$.
+
+\begin{myTheorem}\textbf{Théorème de accroissements finis}
+	Si $f$ est dérivable sur $[a,b]$ alors \begin{eqnarray}
+		f'(c)=\frac{f(b)-f(a)}{b-a}
+	\end{eqnarray} 
+\end{myTheorem}
+
+\section{Test de la dérivée première}
+Soit $f$ continue sur $[a,b]$ et dérivable sur $]a,b[$
+\begin{enumerate}
+	\item si $f'(x)>0$  fonction croissante
+	\item si $f'(x)<0$  fonction décroissante
+	\item si $f'(x)=0$  point critique
+\end{enumerate}
+\section{Concavité et test de la dérivée seconde}
+	\begin{enumerate}
+		\item si f''(x)>0 convexe
+		\item si f''(x)<0 non convexe (concave)
+		\item si f''(x)=0 point d'inflexion (Wendepunkt)
+	\end{enumerate}
+\section{Problème d'optimisation}
+\begin{enumerate}
+	\item créer une fonction représentant la donnée du problème
+	\item dériver
+	\item déterminer quelle genre d'optimum on trouve et quel genre d'optimum on cherche. Attention aux "rand"max qui sont déterminés par la donnée du problème et qui ne correspondent pas forcément à l'optimum trouvé.
+\end{enumerate}
+
+\begin{myExample}
+	$f(x)=(32-2x)x$, $f'(x)=32-4x$, $\hat x=8$
+\end{myExample}
+
+\section{Méthode de Newton}	
+La méthode de Newton est une méthode numérique permettant de trouver les zéros d'une fonction, pour plus de détails se référer au cours d'analyse numérique.
+
+Soit $f(x)$ une fonction continue sur $[a,b]$, une approximation de $f(x)=0$ peut être donnée par
+\begin{eqnarray}
+	x^{(k+1)}=x^{(k)}-\frac{f(x^{(k)})}{f'(x^{(k)})}
+\end{eqnarray}
+où $x^{(0)}\in[a,b]$ est choisi arbitrairement.
+
+\begin{myExample}
+On cherche les zéros de	$f(x)=x-\cos{(x)}$.
+
+On a $f'(x)=1-\sin{(x)}$ la méthode s'écrit donc
+\begin{eqnarray*}
+	x^{(k+1)}=x^{(k)}-\frac{x^{(k)}-\cos{(x^{(k)})}}{1-\sin{(x^{(k)})}}
+\end{eqnarray*}
+en prenant $x^{(0)}=0.8$ on a
+\begin{eqnarray*}
+	x^{(0)}=& &0.8
+	\\
+	x^{(1)}=&0.8-\frac{0.8-\cos{(0.8)}}{1-\sin{(0.8)}}=&0.74
+	\\
+	x^{(2)}=&\cdots&0.739
+	\\
+	x^{(3)}=&\cdots&0.739
+	\\
+	x^{(4)}=&\cdots&0.739085133\dots
+\end{eqnarray*}
+\end{myExample}
+
+\section{The differential operator: ${\rm d}$}
+The $\rm d$ operator indicates an infinitely small interval.
+
+\begin{equation}
+	\lim_{\Delta x\rightarrow0}\Delta x={\rm d}x
+\end{equation}
+\section{Operator Algebra}
+The operator $\rm d$ followed by its associated variable can be treated as a common variable and allows to find interesting and practical identities. Be aware that the operator is not dissociable from its attached variable; not allowed to divide by ${\rm d}$! For instance
+\begin{eqnarray}
+	\frac{{\rm d} x^2}{{\rm d}x}=2x\\
+	\Rightarrow
+	{\rm d}x^2 =2x{\rm d}x
+\end{eqnarray}
+
+or
+
+\begin{eqnarray}
+	\frac{{\rm d} \ln{(x)}}{{\rm d}x}=\frac{1}{x}\\
+	\Rightarrow
+	{\rm d} \ln{(x)} =\frac{1}{x}{\rm d}x
+\end{eqnarray}
+
+The latter proves that a percentage change can simply be expressed as the derivative of the $\log$ function.
+\begin{equation}
+	\frac{\dot x}{x} = \frac{{\rm d} \ln{(x)}}{{\rm d}t}
+\end{equation}
+In discrete time, we find the following approximation for small changes
+\begin{equation}
+	\frac{x_1-x_0}{x_0}\approx\ln{\left(\frac{x_1}{x_0}\right)}
+\end{equation}
+
+More generally, one can state
+\begin{equation}
+	{\rm d}f(x) = \left(\frac{{\rm d}f(x)}{{\rm d}x}\right){\rm d}x=f'(x){\rm d}x
+\end{equation}
+
+
+\begin{myExample}
+	In physics it is know that work is the line integral of the force:
+	\begin{equation}
+		W_\Gamma = \int_{\Gamma} Fd\gamma.
+	\end{equation}
+	
+	So the instantaneous force can be retrieved by differentiating $W$ at $\mathbf{x}$.
+	
+	When the $W$ is only potential energy, i.e. $W=U=mgh = mg(x-0)$ it is very easy to retrieve the gravity force.
+	
+	\begin{equation}
+		F = \frac{{\rm d} U}{{\rm d} x} = mg.
+	\end{equation}
+	
+	
+	Now, if we do the same exercie with work that comprises only kinetic energy, i.e. $W=K=\frac{1}{2}mv^2$, one can retrieve Newton's second law by using operator algebra.
+	
+	\begin{enumerate}
+		\item Rewrite $v$ in the differental form
+		\begin{equation}
+			K = \frac{1}{2}m\left(\frac{{\rm d}x}{{\rm d} t}\right)^2
+		\end{equation}
+		
+		\item apply differentiation rigorously and methodically, also to operators
+		\begin{eqnarray}
+			\frac{\rm d K}{{\rm d}x} 
+			&=& \frac{\rm d}{{\rm d}x}\left(\frac{1}{2}m\left(\frac{{\rm d}x}{{\rm d}t}\right)^2\right)\\
+			&=& \frac{1}{2}m\frac{\rm d}{{\rm d}x}\left(\left(\frac{{\rm d}x}{{\rm d}t}\right)^2\right)\\
+			&=& \frac{m}{2{\rm d}t^2}\frac{\rm d}{{\rm d}x}\left(\left({\rm d}x\right)^2\right)\\
+			&=& \frac{m}{2{\rm d}t^2}\frac{2{\rm d}x}{{\rm d}x}{\rm d}{\rm d}x\\
+			&=& m \frac{{\rm d}^2x}{{\rm d}t^2}\\
+			&=& ma
+		\end{eqnarray}
+	\end{enumerate}
+\end{myExample}
+
+

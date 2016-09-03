@@ -1,0 +1,51 @@
+\section{Markov Chain}
+
+A markov chain describes the evolution of a system state over time given that we know the change of state probability for each time and state. It is described by 
+
+\begin{equation}
+\mathbf{b}_{n+1} = A\mathbf{b}_{n}
+\end{equation}
+
+where $\mathbf{b}$ is a $n\times 1$ vector and $A$ a $n\times n$ matrix; $n$ denoting the number of state in the system. The element $a_{ij}$ can be read as the probability to jump from state $i$ to state $j$. Note that $\sum_{j=1}^n a_{ij}=1~\forall i\in(1, .., n)$, $\sum_{i=1}^nb_i=1$ and $a_{ij},b_i\in(0,1)$ 
+
+If $A$ remains constant over time ($A=A(n)$) the state of the system at time $n$ is
+\begin{equation}
+\mathbf{b}_n = A^{n-k}\mathbf{b}_k= A^n\mathbf{b}_0
+\end{equation}
+
+Sometimes there exists a state where the system reaches an equilibrium and is described when
+
+\begin{equation}
+\mathbf{b} = A\mathbf{b}
+\end{equation}
+
+\subsection{Market evolution}
+
+The market shift from bull to bear and recession can be described (see wikipedia example and PUT IMAGE) using a Markov chain.
+
+If state 
+\begin{enumerate}
+\item is Bull market
+\item is Bear Market
+\item is recession
+\end{enumerate}
+and we have
+
+\begin{equation}
+A =
+\begin{pmatrix}
+0.9	& 0.15	& .25 \\
+0.075	& .8		& .25\\
+0.025 & 0.05		& .5
+\end{pmatrix}
+\end{equation}
+
+(e.g. transition from bull to bear market is $a_{21}=7.5\%$). One can show that eventually the market will tend to
+\begin{equation}
+\mathbf{b} = A\mathbf{b} = 
+\begin{pmatrix}
+62.5\%\\
+31.25\%\\
+6.25\%
+\end{pmatrix}
+\end{equation}

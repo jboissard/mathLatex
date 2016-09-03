@@ -1,0 +1,181 @@
+\chapter{Suites}
+Une \textbf{suite} est une application de $\mathbb N$ (ou d'une partie de $\mathbb N$) vers $\mathbb R$. L'image de $n\in\mathbb N$ par cette application, notée $u_n$, converge vers un nombre réel $a$ si $\lim_{n\rightarrow+\infty}u_n=a$.
+
+\begin{enumerate}
+	\item Une suite croissante et majorée converge
+	\item Une suite décroissante et minorée converge
+\end{enumerate}
+
+\section{Suite arithmétique}
+La suite $u_1,u_2,u_3,\dots$ est une suite \textbf{arithmétique} de raison $r$ si, pour tout $n\in\mathbb N^*, u_{n+1}=u_n+r$.
+
+\begin{eqnarray}
+	u_n=u_1+(n-1)r\\
+	\sum_{i=1}^{n}u_i=n\frac{u_1+u_n}{2}
+\end{eqnarray}
+
+\section{Suite géométrique}
+La suite $u_1,u_2,u_3,\dots$ est une suite \textbf{géométrique} de raison $r$ si, pour tout $n\in\mathbb N^*, u_{n+1}=r\cdot u_n$.
+\begin{eqnarray}
+	u_n=u_1\cdot r^{n-1}\\
+	a \sum_{i=0}^{n} q^{i} =a \frac{1-q^{n+1}}{1-q}\\
+	\lim_{n\rightarrow+\infty}\sum_{i=0}^{n} q^{i}=\frac{1}{1-q}&|q|<1
+\end{eqnarray}
+
+\subsection{Proof}
+One very elegant proof is to consider the following equation
+\begin{equation*}
+	\label{eq:beginprooffseriegeom}
+	x = 1+ax
+\end{equation*}
+we know $x= \frac{1}{1-a}$
+
+We substitute $1+ax$ to $x$ on the RHS of the equation which gives
+\begin{eqnarray*}
+	x &=& 1+ax\\
+	&=& 1 + a(1+ax)\\
+	&=& 1 + a(1+a(1+x))\\
+	&=& 1 + a + a^2 + a^3 + ... +a^n + a^{n+1}x\\
+	&=& \sum_{k=0}^n a^k + a^{n+1}x
+\end{eqnarray*}
+which leads to
+\begin{eqnarray*}
+	\sum_{k=0}^n a^k &=&   x-a^{n+1}x= x\left(1-a^{n+1}\right)
+\end{eqnarray*}
+since we know from eq \ref{eq:beginprooffseriegeom} $x=\frac{1}{1-a}$, we subsitute and find
+\begin{equation*}
+	\sum_{k=0}^n a^k =  \left(1-a^{n+1}\right)\frac{1}{1-a}
+\end{equation*}
+which is the geometric serie.
+
+\chapter{Series}
+La série de termes $u_k$ convege si la suite $s_n=\sum_{k=1}^nu_k$ converge. La limite de cette suite, notée $\sum_{k=1}^\infty u_k$, est la somme de la série.
+\section{Series convergentes et divergentes}
+\subsection{Power serie}
+Power series are defined as follows:
+\begin{eqnarray}
+	\sum_{n=0}^{\infty}a_nx^n
+\end{eqnarray}
+
+Two very important properties applies to those series
+\begin{eqnarray}
+	\sum_{n=0}^{\infty}\frac{d}{dx}a_nx^n=\frac{d}{dx}\sum_{n=0}^{\infty}a_nx^n
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\sum_{n=0}^{\infty}\int_0^{x}a_nx^ndx=\int_0^x\left(\sum_{n=0}^{\infty}a_nx^n\right)dx
+\end{eqnarray}
+
+Here is one example
+\begin{eqnarray*}
+	\sum_{n=0}^{\infty}\frac{z^{-n}}{n}=\sum_{n=0}^{\infty}\int_0^z-z^{-n-1}dz=\int_0^z\underbrace{\left(\sum_{n=0}^{\infty}-z^{-n-1}\right)}_{-\frac{1}{1-z}}dz=-\int_0^z\frac{1}{1-z}dz=1-\ln{(1-z)}
+\end{eqnarray*}
+
+
+\subsection{Série géométrique}
+\subsubsection{Somme de nombre consécutifs}
+\begin{eqnarray}
+	\sum_{i=0}^{n}i=\sum_{i=1}^ni=\frac{1}{2}n(n+1)
+\end{eqnarray}
+\subsubsection{Somme de carrés}
+\begin{eqnarray}
+	\sum_{i=0}^{n}i^2=\sum_{i=1}^ni^2=\frac{1}{3}n^3+\frac{1}{2}n^2+\frac{1}{6}n=\frac{1}{3}n\left(n+1\right)\left(n+\frac{1}{2}\right)
+\end{eqnarray}
+\begin{eqnarray}
+	\sum_{i=0}^{n}i^3=\sum_{i=1}^ni^3=\frac{1}{4}n^2\left(n+1\right)^2
+\end{eqnarray}
+\begin{eqnarray}
+	\sum_{i=0}^{n}i^4=\sum_{i=1}^ni^4=\frac{1}{4}n^2\left(n+1\right)^2
+\end{eqnarray}
+\subsection{Série téléscopique}
+\section{Séries à termes positifs}
+\subsection{Série de Riemann}
+\section{Les tests d'Alembert et les racines}
+\subsection{Critèredu quotient (Alembert)}
+Si $\lim_{k\rightarrow+\infty}\frac{u_{k+1}}{u_k}=c$ et $c \begin{cases}
+	c<1 \text{ , la série converge}\\c>1 \text{ , la série diverge}
+\end{cases}$
+
+\subsection{Critère de la racine (Cauchy)}
+Si $\lim_{k\rightarrow+\infty}\sqrt{u_k}=\lim_{k\rightarrow+\infty}u_k^{1/k}=c$ et $\begin{cases}
+	c<1\text{, la série converge}\\
+	c>1\text{, la série diverge}
+\end{cases}$
+\section{Séries alternées et convergence absolue}
+\section{Fonctions représentées par une série entière}
+\section{La série du binôme}
+\section{Série entière}
+Une série de terme général $u_k$ est appelée \textbf{série entière} si $u_k=a_kx^k$ avec $a_k\in\mathbb R$.
+
+Rayon de convergence: 
+\begin{eqnarray}
+	r=\lim_{k\rightarrow+\infty}\left|\frac{a_k}{a_k+1}\right|\\
+	r=\frac{1}{\lim_{k\rightarrow+\infty}|a_k|^{1/k}}
+\end{eqnarray}
+La série entière de terme $a_x^k \begin{cases}
+	\text{converge si }|x|<r\\
+	\text{diverge si }|x|>r
+\end{cases}$
+Si $|x|=r$, il y a un doute.
+
+Si $r=+\infty$, alors la série entière converge pour tout réel $x$.
+\section{Exemples de séries}
+\subsection{Exemples de séries divergentes}
+\begin{eqnarray}
+	1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\dots=\sum_{i=1}^\infty\frac{1}{i}=+\infty&\text{Série harmonique}\\
+	1+\frac{1}{\sqrt 2}+\frac{1}{\sqrt 3}+\frac{1}{\sqrt 4}+\frac{1}{\sqrt 5}+\dots=\sum_{i=1}^\infty\frac{1}{\sqrt i}=+\infty
+\end{eqnarray}
+et plus généralement
+\begin{eqnarray}
+	1+\frac{1}{2^\alpha}+\frac{1}{3^\alpha}+\frac{1}{4^\alpha}+\frac{1}{5^\alpha}+\dots=\sum_{i=1}^\infty\frac{1}{i^\alpha}=+\infty&\text{si $\alpha\leq1$}
+\end{eqnarray}
+\begin{eqnarray}
+	1+r+r^2+r^3+\dots+r^k+\dots=+\infty&\text{si $r\geq1$}
+\end{eqnarray}
+\subsection{Exemples de séries convergentes}
+\begin{eqnarray}
+	1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\dots+\frac{1}{k!}+\dots=\sum_{k=0}^\infty\frac{1}{k!}=e\\
+	1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\dots=\sum_{k=0}^\infty\frac{1}{2^k}=2\\
+	1+r+r^2+r^3+\dots=\sum_{i=1}^{n}r^i=\frac{1}{1-r}&|r|<1
+\end{eqnarray}
+\begin{eqnarray}
+	1+\frac{1}{2^\alpha}+\frac{1}{3^\alpha}+\dots=\sum_{k=0}^\infty\frac{1}{k^\alpha}=\zeta(\alpha)&\text{ fonction zêta de Riemann}\\
+	1+\frac{1}{4}+\frac{1}{9}+\frac{1}{25}+\dots=\zeta(2)=\frac{\pi^2}{6}\\
+	1+\frac{1}{16}+\frac{1}{81}+\frac{1}{256}+\dots=\zeta(4)=\frac{\pi^4}{90}\\
+	1+\frac{1}{9}+\frac{1}{25}\frac{1}{49}+\dots=\sum_{k=0}^\infty\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}\\
+	1+\frac{1}{81}+\frac{1}{625}\frac{1}{2401}+\dots=\sum_{k=0}^\infty\frac{1}{(2k+1)^4}=\frac{\pi^4}{96}
+\end{eqnarray}
+
+\begin{eqnarray}
+	\frac{1}{1\cdot2}+\frac{1}{2\cdot3}+\frac{1}{3\cdot4}+\dots=\sum_{k=1}^\infty\frac{1}{k\cdot(k+1)}=1\\
+	\frac{1}{1\cdot3}+\frac{1}{3\cdot5}+\frac{1}{5\cdot7}+\dots=\sum_{k=1}^\infty\frac{1}{(2k-1)\cdot(2k+1)}=\frac{1}{2}\\
+	\frac{1}{1\cdot3}+\frac{1}{2\cdot4}+\frac{1}{3\cdot5}+\dots=\sum_{k=2}^\infty\frac{1}{(k-1)\cdot(k+1)}=\frac{3}{4}\\
+	\frac{1}{3\cdot5}+\frac{1}{7\cdot9}+\frac{1}{11\cdot13}+\dots=\sum_{k=1}^\infty\frac{1}{(4k-1)\cdot(4k+1)}=\frac{1}{2}-\frac{\pi}{8}
+\end{eqnarray}
+\begin{eqnarray}
+	1-\frac{1}{1!}+\frac{1}{2!}-\frac{1}{3!}+\dots=\sum_{k=0}^\infty(-1)^k\frac{1}{k!}=\frac{1}{e}\\
+	1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\dots=\sum_{k=0}^\infty(-1)^k\frac{1}{k+1}=\ln{2}&\text{Série harmonique alternée}\\
+	1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\dots=\sum_{k=0}^\infty(-1)^k\frac{1}{2k+1}=\frac{\pi}{4}\\
+	1-\frac{1}{4}+\frac{1}{9}-\frac{1}{16}+\dots=\sum_{k=0}^\infty(-1)^k\frac{1}{(k+1)^2}=\frac{\pi}{4}
+\end{eqnarray}
+
+\section{Formule de Taylor d'ordre $n$}
+On note $f$ une fonction $n+1$ fois continuement dérivable dans un intervalle ouvert $I$ contenant $a$.
+
+Pour tout $x\in I$:
+
+\begin{eqnarray}
+	f(x)=f(a)+\frac{1}{1!}f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\dots+\frac{1}{n!}f^{(n)}(a)(x-a)^n+R_n(x)
+\end{eqnarray}
+avec \begin{eqnarray}
+	R_n(x)=\int_a^x\frac{1}{n!}f^{(n+1)}(t)(x-t)^ndt=\frac{1}{(n+1)!}f^{(n+1)}(c)(x-a)^{n+1}
+\end{eqnarray} où $c$ est compris entre $a$ et $x$.
+
+Estimation du reste: $|R_n(x)|\leq\frac{|x-a|^{n+1}}{(n+1)!}\mathrm{sup}_{t\in I}{|f^{(n+1)}(t)|}$.
+
+Si $\lim_{n\rightarrow+\infty}R_n(x)=0$, alors $f(x)=\sum_{k=0}^\infty\frac{1}{k!}f^{(k)}(a)(x-a)^k$ et la série de terme $\frac{1}{k!}f^{(k)}(a)(x-a)^k$ est appelée \textbf{série de Taylor de $f$ contrée en $a$}.
+\subsection{Formule de MacLaurin}
+Si $a=0$, on obient la formule de MacLaurin:
+\begin{eqnarray}
+	f(x)=f(0)+\frac{1}{1!}f'(0)x+\frac{1}{2!}f''(0)x^2+\dots+\frac{1}{n!}f^{(n)}(0)x^n+R_n(x)
+\end{eqnarray}

@@ -1,0 +1,123 @@
+%!TEX root = /Users/Johan/Documents/University/Math/Gymnase/book/book.tex
+\chapter{Techniques d'intégration}
+\section{Intégration par parties}
+\begin{myDefinition}
+	\begin{eqnarray}
+		\int f(x)g'(x)dx=f(x)g(x)-\int f'(x)g(x)dx
+	\end{eqnarray}
+	$\int udv=uv-\int vdu$
+\end{myDefinition}
+\begin{myExample}
+	\begin{eqnarray*}
+		\int xe^{2x}dx=?
+	\end{eqnarray*}
+	\\
+	$dv=e^{2x}dx$, $v=\frac{1}{2}e^{2x}$, $u=x$ et $du=dx$
+	\begin{eqnarray*}
+		\int xe^{2x}dx=
+		\\
+		\int u\frac{dv}{dx}dx=uv-\int\frac{du}{dx}vdx=
+		\\
+		x\frac{1}{2}e^{2x}-\int \frac{1}{2}e^{2x}dx=
+		\\e^{2x}\left(\frac{x}{2}-\frac{1}{4}\right)+C
+	\end{eqnarray*}
+\end{myExample}
+\begin{myExample}
+	\begin{eqnarray*}
+		\int\ln{(x)}dx=?
+	\end{eqnarray*}
+	\\
+	On pose $dv=dx$, $v=x$, $du=\frac{1}{x}$ et $u=\ln{(x)}$
+	\begin{eqnarray*}
+		\int\ln{(x)}\cdot 1dx=x\ln{(x)}-\int1\cdot dx=x(\ln{(x)}-1)
+	\end{eqnarray*}
+\end{myExample}
+\section{Substitutions}
+a faire
+%todo
+\section{Intégrales trigonométriques}
+Pour une intégrale du type
+\begin{eqnarray*}
+	\int\sin^n{(x)}dx
+\end{eqnarray*}
+utiliser $\sin^2{(x)}=1-\cos^2{(x)}$.
+\begin{myExample}
+	\begin{eqnarray*}
+		\int\sin^5{(x)}dx=\int\sin^4{(x)}\sin{(x)}dx=\int\left(1-\cos^2{(x)}\right)^2\sin{(x)}dx
+		\\
+		\int\left(1-2\cos^2{(x)}+\cos^4{(x)}\right)\sin{(x)}dx
+	\end{eqnarray*}
+	On pose $u=\cos{(x)}$ et $du=-\sin{(x)}$ et notre expression devient
+	\begin{eqnarray*}
+		\int\sin^5{(x)}dx=-\int\left(1-2u^2+u^4\right)du=-u+\frac{2}{3}u^3-\frac{1}{5}u^5+C
+	\end{eqnarray*}
+On peut utiliser le même principe pour une puissance impaire de $\cos{(x)}$, on remplace simplement par $1-\sin{(x)}$ cette fois.
+\end{myExample}
+
+Pour une puissance paire de $\cos$ ou $\sin$ utiliser les substitutions suivantes: $\sin^2{(x)}=\frac{1}{2}(1-\cos{(2x)})$ et $\cos^2{(x)}=\frac{1}{2}(1+\cos{(2x)})$.
+\begin{myExample}
+	\begin{eqnarray*}
+		\int\sin^4{(x)}dx=\frac{1}{4}\int(1-\cos{(2x)})^2dx=\frac{1}{4}\int1-2\cos{(2x)}+\cos^2{(2x)}dx
+	\end{eqnarray*}
+	on remplace $\cos^2{(2x)}=\frac{1+\cos{(4x)}}{2}$ ce qui donne
+	\begin{eqnarray*}
+		\int\sin^4{(x)}dx=\frac{1}{4}\int1-2\cos{(2x)}+\frac{1+\cos{(4x)}}{2}dx=\frac{3}{8}x-\frac{1}{4}\sin{(2x)}+\frac{1}{32}\sin{(4x)}+C
+	\end{eqnarray*}
+\end{myExample}
+
+\section{Substitutions trigonométriques}
+%todo be done
+\section{Intégrales de fonctions rationelles}
+
+\begin{myExample}
+	Le but est d'intégrer
+	\begin{eqnarray*}
+		\int\frac{4x^2+13x-9}{x^3+2x^2-3x}dx
+	\end{eqnarray*}
+	La clé dans ce genre de problème est de faire une décomposition en éléments simples. Tout d'abord on remarque que
+	\begin{eqnarray*}
+		x^3+2x^2-3x=x(x^2+2x-3)=x(x-1)(x+3).
+	\end{eqnarray*}
+	On pose
+	\begin{eqnarray*}
+		\frac{4x^2+13x-9}{x^3+2x^2-3x}=\frac{A}{x}+\frac{B}{x-1}+\frac{C}{x+3}
+		\\
+		\Rightarrow 4x^2+13x-9=A(x-1)(x+3)+Bx(x+3)+Cx(x-1)
+	\end{eqnarray*}
+	Quand $x=0$: $-3A=-0\Rightarrow A=3$\\
+	quand $x=1$: $4B=8\Rightarrow B=2$\\
+	et quand $x=-3$: $12C=-12\Rightarrow C=-1$.
+	
+	On a donc
+	\begin{eqnarray*}
+		\frac{4x^2+13x-9}{x^3+2x^2-3x}=\frac{3}{x}+\frac{2}{x-1}-\frac{1}{x+3}
+	\end{eqnarray*}
+	et
+	\begin{eqnarray*}
+		\int\frac{4x^2+13x-9}{x^3+2x^2-3x}dx=\int\frac{3}{x}+\frac{2}{x-1}-\frac{1}{x+3}dx
+		\\
+		=\int\frac{3}{x}dx+\int\frac{2}{x-1}dx-\int\frac{1}{x+3}dx\\
+		=3\ln{|x|}+2\ln{|x-1|}-\ln{|x+3|}+C\\
+		=\ln{\left|\frac{x^3(x-1)^2}{x+3}\right|}+C
+	\end{eqnarray*}
+\end{myExample}
+
+\section{Intégrales d'expressions quadratiques}
+Si $ax^2+bx+c$ est irréductible on peut effectuer la marche à suivre illustrée dans l'exemple suivant.
+\begin{myExample}
+	On veut calculer
+	\begin{eqnarray*}
+		\int\frac{2x-1}{x^2-6x+13}dx
+	\end{eqnarray*}
+	On remarque que $\Delta=36-4\cdot13=-16<0$, on récrit donc l'expression
+	\begin{eqnarray*}
+		x^2-6x+13=x^2-6x+9+13-9=(x-3)^2+4
+	\end{eqnarray*}
+	On pose $u=x-3$ et $du=dx$, et on obtient
+	\begin{eqnarray*}
+		\int\frac{2x-1}{x^2-6x+13}dx=\int\frac{2x-1}{(x-3)^2+4}dx=\int\frac{2u+5}{u^2+4}du
+		\\=2\int\frac{u}{u^2+4}du+5\int\frac{1}{u^2+4}du=\ln{\left|u^2+4\right|}+\frac{5}{2}\arctan{\left|\frac{u}{2}\right|}+C
+		\\
+		=\ln{\left|x^2-6x+13\right|}+\frac{5}{2}\arctan{\left|\frac{x-3}{2}\right|}+C
+	\end{eqnarray*}
+\end{myExample}

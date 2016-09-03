@@ -1,0 +1,90 @@
+\chapter{Dérivation partielle}
+\section{fonction de plusieurs variables}
+\begin{equation}
+	f(x, y, z)
+\end{equation}
+ou plus généralement
+\begin{equation}
+	f ( \mathbf{x})
+\end{equation}
+\section{Limites et continiuité}
+même chose que pour une variable: la variable d'intérêt varie et les autres restent fixées.
+\section{Dérivée partielle}
+\begin{equation}
+	\frac{\partial f}{\partial x} = \lim_{\Delta x\rightarrow 0} \frac{f(x+\Delta x, y, z)-f(x, y, z)}{\Delta x}
+\end{equation}
+\subsection{Exemple}
+For $f(x,y,z)=x^2+3y+\sin{(z)}$, 
+\begin{eqnarray}
+	\label{eq:deriveepartielle}
+	\frac{\partial f}{\partial x} &=& 2x\nonumber\\
+	\frac{\partial f}{\partial y} &=& 3\nonumber\\
+	\frac{\partial f}{\partial z} &=& \cos{(z)}
+\end{eqnarray}
+
+\section{Dérivée de fonctions composées}
+\section{Dérivée directionelle}
+\section{Normales et plans tangents}
+\section{Valeurs extrêmes des fonctions à plusieurs variables}
+
+\section{Gradient}
+\begin{equation}
+	\nabla = \begin{pmatrix}
+		\frac{\partial}{\partial x_1}\\
+		\vdots\\
+		\frac{\partial}{\partial x_n}
+	\end{pmatrix}
+\end{equation}
+
+Hence the example eq \ref{eq:deriveepartielle} can be rewritten
+\begin{equation}
+	\nabla f =
+	\begin{pmatrix}
+		2x \\ 3 \\ \cos{(z)}
+	\end{pmatrix}
+\end{equation}
+
+
+
+\section{Total derivative}
+\begin{equation}
+	{\rm d} f = 
+	\frac{\partial f}{\partial t}{\rm d}t +
+	\frac{\partial f}{\partial x}{\rm d}x +
+	\frac{\partial f}{\partial y}{\rm d}y +
+	\frac{\partial f}{\partial z}{\rm d}z
+\end{equation}
+
+More generally
+
+\begin{equation}
+	{\rm d}f=\sum\limits_{i=1}^n \frac{\partial f}{\partial x_i}\, {\rm d}x_i\,\,.
+\end{equation}
+
+In vector form, this writes
+
+\begin{eqnarray}
+	{\rm d}f&=&
+	\begin{pmatrix}
+		\frac{\partial f}{\partial t}&
+		\frac{\partial f}{\partial x}&
+		\frac{\partial f}{\partial y}&
+		\frac{\partial f}{\partial z}
+	\end{pmatrix}
+	\cdot
+	\begin{pmatrix}
+		{\rm d}t\\{\rm d}x\\{\rm d}y\\{\rm d}z
+	\end{pmatrix}\\
+	&=&\nabla f\cdot {\rm d}\mathbf{x}
+\end{eqnarray}
+
+\subsection{Application: error calculation}
+
+\begin{equation}
+	\Delta f \approx
+	\frac{\partial f}{\partial t}\Delta t +
+	\frac{\partial f}{\partial x}\Delta x +
+	\frac{\partial f}{\partial y}\Delta y +
+	\frac{\partial f}{\partial z}\Delta z
+\end{equation}
+works for small $\Delta$.

@@ -1,3 +1,6 @@
+## ignore svn (previous versioning system)
+.svn
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

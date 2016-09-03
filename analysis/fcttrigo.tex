@@ -1,0 +1,48 @@
+\chapter{Fonctions trigonométriques réciproques et hyperboliques}
+\section{Dérivées et intégrales}
+\begin{eqnarray}
+	\frac{d}{dx}\arcsin u = \frac{1}{\sqrt{1-u^2}}\frac{du}{dx}\\
+	\frac{d}{dx}\arccos u = -\frac{1}{\sqrt{1-u^2}}\frac{du}{dx}\\
+	\frac{d}{dx}\arctan u = \frac{1}{\sqrt{1+u^2}}\frac{du}{dx}
+%	\frac{d}{dx}\arcsc u = \frac{1}{u\sqrt{u^2-1}}\frac{du}{dx}\\
+\end{eqnarray}
+
+\begin{eqnarray}
+	\int\frac{1}{\sqrt{a^2-u^2}}du=\arcsin{\left(\frac{u}{a}\right)}+C\\
+	\int\frac{1}{\sqrt{a^2+u^2}}du=\frac{1}{a}\arctan{\left(\frac{u}{a}\right)}+C
+	%\int\frac{1}{u\sqrt{u^2-a^2}}du=\frac{1}{a}\arcsec{\left(\frac{u}{a}\right)}+C\\
+\end{eqnarray}
+
+\section{Fonctions hyperboliques}
+\begin{eqnarray}
+	\cosh{(x)}=\frac{e^x+e^{-x}}{2}\\
+	\sinh{(x)}=\frac{e^x-e^{-x}}{2}
+\end{eqnarray}
+
+\subsection{Propriétés}
+\begin{eqnarray}
+	\cosh^2{(x)}-\sinh^2{(x)}=1
+\end{eqnarray}
+\subsection{Dérivées et intégrales}
+\begin{eqnarray}
+	\frac{d}{dx}\sinh{(x)}=\cosh{(x)}\frac{du}{dx}\\
+	\frac{d}{dx}\cosh{(x)}=\sinh{(x)}\frac{du}{dx}
+\end{eqnarray}
+
+\section{Fonctions hyperboliques réciproques}
+% todo checker si c'est arg ou Arg et qu'est que la différence ...
+\begin{eqnarray}
+	\arg\sinh{(x)}=\ln{(x+\sqrt{x^2+1})}\\
+	\arg\cosh{(x)}=\ln{(x+\sqrt{x^2-1})}
+\end{eqnarray}
+$\arg$ est l'argument.
+\subsection{Dérivées et intégrales}
+\begin{eqnarray}
+	\frac{d}{dx}\arg\sinh{(x)}=\frac{1}{\sqrt{u^2+1}}\frac{du}{dx}\\
+	\frac{d}{dx}\arg\cosh{(x)}=\frac{1}{\sqrt{u^2-1}}\frac{du}{dx}
+\end{eqnarray}
+
+\begin{eqnarray}
+	\int\frac{1}{\sqrt{u^2+a^2}}du=\arg\sinh{\left(\frac{u}{a}\right)}+C\\
+	\int\frac{1}{\sqrt{u^2-a^2}}du=\arg\cosh{\left(\frac{u}{a}\right)}+C
+\end{eqnarray}

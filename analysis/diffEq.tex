@@ -1,0 +1,196 @@
+\chapter{Equations différentielles}
+\section{Equations différentielles à variables séparables}
+\begin{eqnarray}
+	M(x)+N(y)\frac{dy}{dx}=0
+\end{eqnarray}
+
+\begin{eqnarray}
+	\int M(x)dx+\int N(y)dy = C
+\end{eqnarray}
+
+\underline{Exemple:}
+\begin{eqnarray*}
+	y^4e^{2x}+\frac{dy}{dx}=0\\
+	\int e^{2x}dx+\int\frac{dy}{y^4}=C\\
+	\frac{1}{2}e^{2x}-\frac{1}{3}y^{-3}=C\\
+	y^{-3}=\frac{3}{2}e^{2x}-C
+\end{eqnarray*}
+
+\begin{eqnarray}
+	y=\sqrt[3]{\frac{2}{3e^{2x}}-K}
+\end{eqnarray}
+\section{Linéaire du premier ordre}
+\begin{eqnarray}
+	y'+P(x)y=Q(x)
+\end{eqnarray}
+Avec $Q(x)=0$
+\begin{eqnarray}
+	y'+P(x)y=0
+\end{eqnarray}
+On retombe su la forme à variables séparables et la solution générale est
+\begin{eqnarray}
+	ye^{\int P(x)dx}=\int Q(x)e^{\int P(x)dx}dx+K
+\end{eqnarray}
+
+\underline{Exemple:}
+\begin{eqnarray*}
+	\frac{dy}{dx}-3x^2y=x^2\\
+	P(x)=-3x^2\\
+	\int P(x)dx=-x^3\\
+	Q(x)=x^2\\
+	ye^{-x^3}=\int x^2e^{-x^3}dx+K=-\frac{1}{3}e^{-x^3}+K
+	\\
+	y=-\frac{1}{3}+Ke^{x^3}
+\end{eqnarray*}
+
+\section{Linéaires du second ordre}
+\begin{eqnarray}
+	y''+by'+cy=0
+\end{eqnarray}
+On écrit l'équation caractéristique
+\begin{eqnarray}
+	\label{eq:eqCaracDiffEq}
+	m^2+bm+c=0
+\end{eqnarray}
+Soient $m_1$ et $m_2$ les solutions de (\ref{eq:eqCaracDiffEq})
+\begin{itemize}
+	\item Si $m_1, m_2\in\mathbb R$: 
+	\begin{eqnarray}
+		y=C_1e^{m_1x}+C_2e^{m_2x}
+	\end{eqnarray}
+	\item Si $m_1=m_2=m$
+	\begin{eqnarray}
+		y=Ce^{mx}
+	\end{eqnarray}
+	\item Si $m_1, m_2\in\mathbb C, m=s\pm it$
+	\begin{eqnarray}
+		y=e^{sx}\left(C_1\cos{tx}+C_2\sin{tx}\right)
+	\end{eqnarray}
+\end{itemize}
+
+\underline{Exemple:}
+\begin{eqnarray*}
+	y''-10y'+41y=0
+	\\
+	m^2-10m+41=0
+\end{eqnarray*}
+Les racines sont: $m=5\pm4i$, on trouve donc
+\begin{eqnarray*}
+	y=e^{5x}\left(C_1\cos{(4x)}+C_2\sin{(4x)}\right)
+\end{eqnarray*}
+\section{Equations différentielles non-homogènes}
+\begin{eqnarray}
+	\label{eq:eqDiffNonHomoEqDIff}
+	y''+by'+cy=k(x)
+\end{eqnarray}
+Si $y=C_1y_1+C_2y_2$ est la solution générale de l'équation homogène $y''+by'+c=0$, alors
+\begin{eqnarray}
+	y_p=uy_1+vy_2
+\end{eqnarray}
+est une solution particulière de (\ref{eq:eqDiffNonHomoEqDIff}) où
+\begin{eqnarray}
+	\begin{cases}
+		u'y_1+v'y_2=0\\
+		u'y_1'+v'y_2'=k(x)
+	\end{cases}
+\end{eqnarray}
+Solution:
+\begin{eqnarray}
+	y=C_1y_1+C_2y_2+uy_1+vy_2
+\end{eqnarray}
+
+\underline{Exemple:}
+\begin{eqnarray}
+	y''+y=\cot x
+\end{eqnarray}
+On réout d'abord
+\begin{eqnarray*}
+	y''+y=0
+\end{eqnarray*}
+L'équation caractéristique est $m^2+1=0$, dont les solutions sont $m=1\pm i$, la solution générale est donc
+\begin{eqnarray*}
+	y=C_1\cos{x}+C_2\sin{x}
+\end{eqnarray*}
+On résout à présent le système
+\begin{eqnarray*}
+	\begin{cases}
+		u'\cos x+v'\sin{x}=0\\
+		-u'\sin{x}+v'\cos{x}=\cot x
+	\end{cases}
+\end{eqnarray*}
+On trouve \begin{eqnarray*}
+	u'=-\cos x\\
+	v'=\csc x-\sin x
+	\Rightarrow\\
+	u=-\sin x\\
+	v=\ln{|\csc{x}-\cot{x}|}+\cos{x}
+\end{eqnarray*}
+La solution particulière est donc donnée par
+\begin{eqnarray*}
+	y_p=\sin x\cos x-\sin x\cos x+\sin x\ln{|\csc{x}-\cot{x}|}
+\end{eqnarray*}
+et la solution 
+\begin{eqnarray*}
+	y=C_1\cos x+C_2\sin x+\sin x\ln{|\csc{x}-\cot{x}|}
+\end{eqnarray*}
+Théorèmes sur les solutions particulières
+\begin{enumerate}
+	\item $y''+by'+cy=e^{nx} \Rightarrow y_p=Ae^{nx}$
+	\item $y''+by'+cy=xe^{nx} \Rightarrow y_p=(A+Bx)e^{nx}$
+	\item $y''+by'+cy=e^{sx}\sin{tx} \Rightarrow y_p=Ae^{sx}\cos{tx}+Be^{sx}\sin{tx}$
+	\item $y''+by'+cy=e^{sx}\cos{tx} \Rightarrow y_p=Ae^{sx}\cos{tx}+Be^{sx}\sin{tx}$
+\end{enumerate}
+Atention les deux derniers résultats ne sont pas valables si l'équation caractéristique admet $m=s+ti$ comme solution.
+
+
+%debut du deuxieme exemple
+\underline{Exemple}
+\begin{eqnarray*}
+	y''+2y'-8y=e^{3x}\\
+	m^2+2m-8=0\\
+	m_1=2, m_2=-4\\
+	y=C_1e^{2x}+C_2e^{-4x}
+\end{eqnarray*}
+
+Dans notre cas la solutio particulière est
+\begin{eqnarray*}
+	y_p=Ae^{3x}\\
+	y_p'=3Ae^{3x}\\
+	y_p''=9Ae^{3x}
+\end{eqnarray*}
+On remplace dans l'équation
+\begin{eqnarray*}
+	9Ae^{3x}+6Ae^{3x}-8Ae^{3x}=e^{3x}\\
+	\Rightarrow (9+6-8)A=1\\
+	\Rightarrow A=\frac{1}{7}\\
+	\Rightarrow y=C_1e^{2x}+C_2e^{-4x}+\frac{1}{7}e^{3x}
+\end{eqnarray*}
+
+\underline{Exemple:}
+\begin{eqnarray*}
+	y''-10y'+41y=\sin{x}\\
+	m^2-10m+41=0\\
+	m=5\pm 4i\\
+	y=e^{5}\left(C_1\cos{4x}+C_2\sin{4x}\right)
+\end{eqnarray*}
+\begin{eqnarray*}
+	y_p=A\cos{x}+B\sin{x}\\
+	y_p'=-A\sin{x}+B\cos{x}\\
+	y_p''=y_p
+\end{eqnarray*}
+Substituting
+\begin{eqnarray*}
+	-A\cos{x}-B\sin x-10B\cos x+10A\sin x+41B\sin x+41A\cos x=\sin x\\
+	(10A+40B)\sin x+(40A-10B)\cos x=\sin x
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	\begin{cases}
+		10A+40B=1\\
+		40A-10B=0
+	\end{cases}
+\end{eqnarray*}
+We find: $A=\frac{4}{170}$ and $B=\frac{1}{170}$, this yields
+\begin{eqnarray*}
+	y=e^{5x}\left(C_1\cos 4x+C_2\sin 4x\right)+\frac{1}{170}(\cos x+4\sin x)
+\end{eqnarray*}

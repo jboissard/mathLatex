@@ -1,0 +1,564 @@
+%
+%  untitled
+%
+%  Created by Johan Boissard [] on 2010-06-24.
+%  Copyright (c) Johan Boissard. All rights reserved.
+% hhh
+
+\documentclass[a4paper,titlepage] {scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{engord}
+%\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath, amssymb}
+\usepackage{comment}
+
+\usepackage{listings}
+
+%allows inclusion of url (hyperref is better than url) 
+%ref: http://www.fauskes.net/nb/latextips/
+\usepackage{hyperref}
+
+%package for chemistry ie: \ce{(NH4)2SO4 -> NH4+ + 2SO4^2-} 
+%ref:www.ctan.org/tex-archive/macros/latex/contrib/mhchem/mhchem.pdf
+\usepackage[version=3]{mhchem}
+%celsius + degrees
+\usepackage{gensymb}
+%to get last page
+\usepackage{lastpage} % \pageref{LastPage}
+
+%make use of the fullpage (no HUGE margins)
+\usepackage{fullpage}
+\usepackage{subfig}
+
+
+%\renewcommand{\chaptername}{Laboratory}
+%\setcounter{chapter}{5}
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames, table]{xcolor}
+% Include this somewhere in your document
+
+
+
+\usepackage[absolute]{textpos}
+
+%column  of multi row in tables
+\usepackage{multirow}
+
+%to have vertical text in table
+\usepackage{rotating}
+
+
+%%%%%%% a virer ici!!!!
+\begin{comment}
+%Fonts and Tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+
+\definecolor{shade}{HTML}{D4D7FE}	%light blue shade
+\definecolor{text1}{HTML}{272727}		%text is almost black
+\definecolor{headings}{HTML}{173849} 	%dark blue %%%dark red 70111
+\definecolor{title}{HTML}{173849} 	%dark blue %%%dark red 70111
+
+\usepackage{titlesec}				%custom \section
+\end{comment}
+
+
+
+
+
+
+
+\author{Johan Boissard}
+\date{\today}
+\title{Machine Learning}
+\begin {document}
+
+%\maketitle
+%\tableofcontents
+\part{Reviewed notation}
+
+\section{Multivariable Regression}
+
+\begin{itemize}
+	\item $y: [m \times 1]$ - Output variable (dependent variable)
+	\item $X: [m \times (n+1)]$ - Input variables (independent variables)
+	\item $\theta: [(n+1) \times 1]$ - parameters
+	\item $m: $ number of observations
+	\item $n: $ number of parameters
+	\item $h_\theta = X\theta$ = regression output, should be as close as possible to $y$
+\end{itemize}
+
+\subsection{Normal resolution}
+\begin{equation}
+	\theta = (\theta^T\theta)^{-1}X^Ty
+\end{equation}
+
+\subsection{Gradient Descent}
+Gradient descent (some sort of Newton), used as a numerical method to iteratively find the optimum of a function ($J$ in this case)
+\begin{eqnarray}
+	\theta &:=& \theta - \alpha\Delta J(\theta)\\
+	&:=& \theta - \alpha\frac{1}{m}X^T(X\theta - y)
+\end{eqnarray}
+
+\section{Multivariable regression with Regularization}
+To automatically choose optimal parameters and avoid from overfitting, an additional feature is introduced $\lambda$.
+
+The Normal Method thus becomes
+\begin{equation}
+	\theta = \left(\theta^T\theta + \lambda \begin{pmatrix}
+		0 & 1 & \dots & 1\\
+		\vdots & 1 & \dots & \vdots\\
+		0 & 1 & \hdots & 1\\
+	\end{pmatrix}\right)^{-1}X^Ty
+\end{equation}
+
+and the gradient descent algorithm
+\begin{eqnarray}
+	\theta &:=& \theta - \alpha\frac{1}{m}X^T(X\theta - y) + \alpha\frac{\lambda}{m}\theta
+\end{eqnarray}
+
+\section{Logistic Regression}
+
+\subsection{Variables for one output}
+\begin{itemize}
+	\item $y\in[0,1]^{m\times 1}$
+	\item $h_\theta = \mathbb P(y = 1 | X; \theta) = g(X\theta)$
+\end{itemize}
+
+
+\subsection{Sigmoid}
+Map $z\in\mathbb{R}$ to $g(z)\in[0,1]$
+
+\begin{equation}
+	g(z) = \frac{1}{1+e^{-z}}
+\end{equation}
+
+\subsection{Gradient Descent}
+
+\begin{eqnarray}
+	\theta &:=& \theta - \alpha\frac{1}{m}X^T(g(X\theta) - y)
+\end{eqnarray}
+
+
+\subsection{Variables for $p$ outputs - multi-classifier}
+\begin{itemize}
+	\item $y \in [0,1]^{m\times p}$
+	\item $\theta: [(n+1)\times p]$
+	\item $X: [m \times (n+1)]$
+	\item $h_\theta =	
+	\begin{pmatrix}
+		h_{\theta_1}\\
+		\vdots\\
+		h_{\theta_p}
+	\end{pmatrix}$
+\end{itemize}
+
+\section{Neural Networks}
+
+\subsection{Forward Propagation}
+
+\begin{itemize}
+	\item $m:$ number of observations
+	\item $y: [m \times s_L]$
+	\item $\theta^{(l)}: [(s_l+1) \times s_{(l+1)}]$
+\end{itemize}
+
+Initialization ($l=1, s_1 = n$): 
+\begin{eqnarray}
+	a^{(1)} &=& x\\
+	{[}m\times s_1{]} &=& {[}m \times n {]}\\
+	\tilde a^{(1)} &=& \tilde x\\
+	{[}m\times (s_1+1){]} &=& {[}m \times (n+1) {]}\nonumber
+\end{eqnarray}
+
+$l<L$:
+\begin{eqnarray}
+	\tilde a^{(l+1)} &=& g(a^{(l)}\theta^{(l)}) = g(z^{(l+1)})\\
+	{[}m\times (s_l+1){]} &=& {[}m \times (s_l+1) {]}{[}(s_l+1) \times (s_{l+1}) {]}\nonumber\\
+\end{eqnarray}
+
+
+\begin{equation}
+	a^{(l)} = \begin{pmatrix}
+		1\\ \vdots \\ 1
+	\end{pmatrix}
+	:+ \tilde a^{(l)}
+\end{equation}
+$\rightarrow$ add a column of ones at the beginning of the matrix
+
+
+\subsection{Backward Propagation (in order to find $\Delta J$)}
+
+Initialization $l = L$:
+
+\begin{eqnarray}
+	\delta^{(L)} &=& a^{(L)} - y^{(L)}\\
+	{[}m\times s_L{]} &=& {[}m \times s_L {]} - {[}m\times s_L{]}\nonumber
+\end{eqnarray}
+
+$l<L$
+\begin{eqnarray}
+	\delta^{(l)} &=& \tilde\delta^{(l+1)}\theta^{T_{(l)}} \circ g'(z^{(l)})\\
+	&=& \tilde\delta^{(l+1)}\theta^{T_{(l)}} \circ a^{(l)} \circ (1 - a^{(l)})\\
+	{[}m\times (s_l+1){]} &=& {[}m \times s_{l+1} {]} - {[}s_{l+1}\times (s_l+1){]}\nonumber
+\end{eqnarray}
+
+\subsection{Compute/train a Neural Network}
+
+A Neural network is defined by the following dimensions:
+\begin{itemize}
+	\item $m$: number of observations
+	\item $s_l$: number of node for layer $l$
+	\item $n$: number of incoming variables $n=s_1$ ($n+1$ for vector of ones)
+	\item $p$: number of output variables ($p = s_L$)
+	\item $L$: Number of nodes
+\end{itemize}
+
+\begin{enumerate}
+	\item $a^{(1)} = x$
+	\item forward: get $a={(l)}$
+	\item backward: get $\delta^{(l)}$
+	\item $\Delta^{(l)} = a^{T_{(l)}}\tilde\delta^{(l+1)}$
+	\item $\nabla^{(l)}J(\theta) = D^{(l)} = \frac{1}{m}\Delta^{(l)}$
+	\item Optimization to find $\hat\theta^{(l)}$: $\min_\theta J$
+\end{enumerate}
+
+
+\section{Support Vector Machine (SVM)}
+Also referred to as Large Margin Classifiers.
+
+\begin{equation}
+	J(\theta)=\min_\theta C\sum_{i=1}^m\left[y^{(i)}\text{cost}_1(\theta^Tx^{i}) + (1-y^{(i)})\text{cost}_0(\theta^Tx^{(i)})\right]+\frac{1}{2}\sum_{i=1}^n\theta_j^2.
+\end{equation}
+
+\begin{equation}
+	C = \frac{1}{\lambda}
+\end{equation}
+
+\part{First Version - as in Coursera Course}
+
+\paragraph{Cost Function} % (fold)
+\label{par:cost_function}
+\begin{equation}
+	J(\theta) = \frac{1}{m}\sum_{i=1}^m \frac{1}{2}(h_\theta(x^{(i)}-y^{(i)}))^2
+\end{equation}
+% paragraph cost_function (end)
+
+Hypothesis
+\begin{equation}
+	h_\theta(\mathbf{x}) = \theta^T\mathbf{x} 
+\end{equation}
+
+with $\mathbf{x}=(1,x_1,...,x_n)$ and $\theta=(\theta_0, \theta_1, ...,\theta_n)$
+
+\paragraph{Gradient Descent} % (fold)
+\label{par:gradient_descent}
+Minimize $J(\theta)$ for $\theta$, the algorithm is
+\begin{equation}
+	\theta_j:= \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)
+\end{equation}
+where $\alpha$ is the \emph{learning rate}.
+% paragraph gradient_descent (end)
+
+and 
+\begin{equation}
+	\theta_j := \theta_j -\alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}
+\end{equation}
+
+
+
+alternatives to gradient descent
+\begin{itemize}
+	\item Conjugate gradient
+	\item BFGS
+	\item L-BFGS
+\end{itemize}
+
+
+\paragraph{Analytical Solution} % (fold)
+\label{par:analytical_solution}
+\begin{equation}
+	\theta = (X^TX)^{-1}X^Ty
+\end{equation}
+% paragraph analytical_solution (end)
+
+%%%%% logficstic 
+
+
+
+\section{Logistic Regression} % (fold)
+\label{sec:logitic_regression}
+
+classification: $y=0$ or $y=1$
+
+Want : $0\leq h_{\theta}(x)\leq 1$
+
+\begin{equation}
+	h_{\theta}(x) = g(\theta^T x)
+\end{equation}
+with logistic (sigmoid) function $z\in\mathbb R$:
+\begin{equation}
+	g(z) = \frac{1}{1+e^{-z}} \in (0,1)
+\end{equation}
+
+output can be read as $h_\theta(x) = \mathbb P(y=1|x;\theta)$: probabability that $y=1$ given $x$ parametrized by $\theta$ is $h$.
+
+%% decsision boundary
+\subsection{Decision Boundary} % (fold)
+\label{par:decision_boundary}
+
+\begin{equation}
+	y=
+	\begin{cases}
+	1 & z>0\\
+	0 & z<0	
+	\end{cases}
+\end{equation}
+where $z$ is the argumen of $g$ and is usally of the form $\theta^Tx$
+
+% paragraph decision_boundary (end)
+
+%% cost functiojn 
+\begin{equation}
+	\text{Cost}(h_{\theta}(x,y))=\frac{1}{2}(h_\theta(x) - y)^2
+\end{equation}
+
+\subsection{Cost function} % (fold)
+\label{par:logistic_regression_cost_function}
+
+\begin{equation}
+	J(\theta) = \frac{1}{m}\sum_{i=1}^m\text{Cost}(h_\theta(x^{(i)}),y^{(i)})
+\end{equation}
+
+\begin{equation}
+	\text{Cost}(h_{\theta}(x,y)) =
+	\begin{cases}
+		-\log{(h_\theta(x))} & y=1
+		\\
+		-\log{(1-h_\theta(x))} & y=0
+	\end{cases}
+\end{equation}
+
+since $y=1$ or $y=0$:
+\begin{equation}
+	\text{Cost}(h_\theta(x),y) = -y\log{(h_\theta(x))} - (1-y)\log{(1-h_\theta(x))}
+\end{equation}
+% paragraph logistic_regression_cost_function (end)
+
+allows to have
+\begin{tabular}{ccc}
+\hline
+$y$ & $h_\theta(\mathbf{x})$ & $\text{Cost}(h,y)$\\
+\hline
+0 & 0 & 0\\
+\hline
+1 & 0 & $\infty$\\
+\hline
+0 & 1 & $\infty$\\
+\hline
+1 & 1 & 0\\
+\hline
+\end{tabular}
+
+\section{Regularization}
+\subsection{Problem of overfitting}
+If too many features ($\theta$), the learned hypothesis may fit the training examples very well ($J(\theta)\approx0$), but fail to generalize to new examples.
+
+\subsubsection{Addressing overfitting}
+\begin{itemize}
+	\item Reduce the number of features
+	\begin{itemize}
+		\item Manually select features to be kept
+		\item Model selection algorithm
+	\end{itemize}
+	\item Regularization
+\end{itemize}
+
+
+\subsection{Cost function}
+
+add $\lambda$ to reduce the number of allowed parameters.
+
+\begin{equation}
+	J(\theta) = \frac{1}{2m}\left[\sum_{i=1}^m(h_\theta(x^{i})-y^{(i)})^2 + \lambda\sum_{j=1}^n\theta_j^2\right]
+\end{equation}
+
+If $\lambda$ is too large, \textbf{underfit} occurs.
+
+\subsection{Regularized Logistic regression} % (fold)
+\label{sub:regularized_logistic_regression}
+\begin{equation}
+ J(\theta) = -\frac{1}{m}
+				\left[
+				 \sum_{i=1}^m 
+					y^{(i)}\log{(h_\Theta(x^{(i)}))} 
+					+
+					(1-y^{(i)})\log{(1-h_\Theta(x^{(i)}))} 
+				\right]
+				+\frac{\lambda}{2m}\sum_{j=1}^m\Theta_j^2.
+\end{equation}
+
+The partial derivative are
+\begin{eqnarray}
+	\frac{\partial J(\theta)}{\partial \theta_0} =& \frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} 
+	& \text{for }j=0\\
+	\frac{\partial J(\theta)}{\partial \theta_j} =& \left(\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}\right) + \frac{\lambda}{m}\theta_j 
+	& \text{ for }j\geq1.
+\end{eqnarray}
+% subsection regularized_logistic_regression (end)
+
+
+% section logitic_regression (end)
+
+\section{Neural Networks: Representation} % (fold)
+\label{sec:neural_networks}
+
+\subsection{Non-linear hypotheses}
+
+\subsection{Neurons and the brain}
+
+\subsection{Model representation I}
+
+Neuron model: Logistic unit
+
+$\mathbf{x}=(1,x_1,...,x_n)$ and $\theta=(\theta_0, \theta_1, ...\theta_n)$
+
+\subsection{Feedforward} % (fold)
+\label{sub:feedforward}
+
+\begin{itemize}
+	\item Input layer: 
+	\begin{equation}
+		a^{(1)} = x
+	\end{equation}
+	\item Hidden layer(s)
+	\begin{eqnarray}
+		z^{2} &=& \Theta^{(1)}a^{(1)}\\
+		a^{(2)} &=& g(z^{(2)})\\
+		&...&\\
+		z^{(k+1)} &=& \Theta^{(k)}a^{(k)}\\
+		a^{(k+1)} &=& g(z^{(k+1)})
+	\end{eqnarray}
+	\item Output layer
+	\begin{eqnarray}
+		z^{(3)} &=& \Theta^{(2)}a^{(2)}\\
+		h_\Theta = a^{(3)} &=& g(z^{(3)})
+	\end{eqnarray}
+\end{itemize}
+
+\begin{itemize}
+	\item $m$ total number of sample: $\{(x^{(1)},y^{(1)}), (x^{(2)},y^{(2)}), ..., (x^{(m)},y^{(m)})\}$
+	\item $L$ total number of layers indexed by $l$
+	\item $s_l$ number of unit per layer (without counting bias unit).
+	\item $\Theta^{(l)}$ has size $s_{l+1}\times (s_l+1)$  (The +1 is here to account for the bias unit).
+	\item Last layer $L$
+	\begin{itemize}
+		\item Binary Classification: $s_L=1$
+		\item Multi-class classification: $s_L=K$.
+	\end{itemize}
+\end{itemize}
+
+\section{Neural networks: learning}
+\subsection{Cost function} % (fold)
+\label{par:cost_function}
+\begin{equation}
+ J(\theta) = -\frac{1}{m}
+ \left[
+ 			\sum_{i=1}^m 
+			\sum_{k=1}^K
+					y_k^{(i)}\log{(h_\Theta(x^{(i)}))_k} 
+					+
+					(1-y^{(i)})\log{(1-h_\Theta(x^{(i)})_k)} 
+				\right]
+				+\frac{\lambda}{2m}\sum_{l=1}^{L-1}\sum_{i=1}^{s_l}\sum_{j=1}^{s_{l+1}}(\Theta_{ij}^{(l)})^2.
+\end{equation}
+% paragraph cost_function (end)
+
+\subsection{Backpropagation} % (fold)
+\label{sub:backpropagation}
+In order to $\min_{\Theta} J(\Theta)$, need to compute
+\begin{itemize}
+	\item $J(\Theta) \Rightarrow$ by plugging values directly into function
+	\item $\frac{\partial}{\partial \Theta_{ij}^{(l)}}J(\Theta) \Rightarrow$ with backpropagation algorithm
+\end{itemize}
+% subsection backpropagation (end)
+
+
+\begin{eqnarray}
+	\begin{cases}
+		\delta^{(L)} = a^{(L)} - y =  h_\Theta - y & \text{for }l=L\\ 
+		\delta^{(l)} = (\Theta^{(l)})^T\delta^{(4)} \circ \frac{d}{dz}g(z^{(l+1)}) & \text{for }1<l<L
+	\end{cases}
+\end{eqnarray}\footnote{$\circ$ is the Hadamard product and produces  a matrix where all elements $ij$ are a multiplication of the element $ij$ of the two input matrices:
+\begin{eqnarray}
+	\begin{pmatrix}
+		a_{11} &  ... & a_{1m}\\
+		a_{21} & ... & \vdots\\
+		\vdots & ... & \vdots\\
+		a_{n1} & ... & a_{nm}
+	\end{pmatrix}
+	\circ
+	\begin{pmatrix}
+		b_{11} &  ... & b_{1m}\\
+		b_{21} & ... & \vdots\\
+		\vdots & ... & \vdots\\
+		b_{n1} & ... & b_{nm}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a_{11}b_{11} &  ... & a_{1m}b_{1m}\\
+		a_{21}b_{21} & ... & \vdots\\
+		\vdots & ... & \vdots\\
+		a_{n1}b_{n1} & ... & a_{nm}b_{nm}
+	\end{pmatrix}
+\end{eqnarray}} 
+The intuition being $\delta$ is the "error" at every node that we try to minimize and converges to the gradient.
+
+\paragraph{Note on $\frac{d}{dz}g(z)$} % (fold)
+\label{par:note_on_d_dz_g_z_}
+for $g(z) = \frac{1}{1+e^{-z}}$
+\begin{equation}
+	\frac{d}{dz}g(z) = \frac{e^{-z}}{1+e^{-z}} = g(z)(1-g(z))
+\end{equation}
+% paragraph note_on_d_dz_g_z_ (end)
+
+\paragraph{Backpropagation Algorithm} % (fold)
+\label{par:backpropagation_algorithm}
+\begin{itemize}
+	\item For $i=1$ to $m$
+	\begin{itemize}
+		\item Set $a{(1)} = x^{(i)}$
+		\item Perform forward propagation to compute $a^{(l)}$ for $l=2,..,L$
+		\item Using $y^{(i)}$ compute $\delta^{(L)} = a^{(L)} - y^{(i)}$
+		\item Compute $\delta^{(L-1)}, \delta^{L-2}, ..., \delta^{(2)}$
+		\item $\Delta_{ij}^{(l)} := \Delta_{ij}^{(l)} + a_j^{(l)}\delta_i^{(l+1)}$ or $\Delta^{(l)}:= \Delta^{(l)} + \delta{(l+1)}\left(a{(l)}\right)^T$
+	\end{itemize}
+	\item $D_{ij}^{(l)}:=\frac{1}{m}\Delta_{ij}^{(l)} + \lambda\Theta_{ij}^{(l)}$ if $j\neq0$
+	\item $D_{ij}^{(l)}:=\frac{1}{m}\Delta_{ij}^{(l)} $ if $j=0$
+\end{itemize}
+
+\begin{equation}
+	\frac{\partial}{\partial\Theta_{ij}^{(l)}}J(\Theta) = D_{ij}^{(l)}
+\end{equation}
+% paragraph backpropagation_algorithm (end)
+
+% subsection feedforward (end)
+
+% section neural_networks (end)
+
+\section{Support Vector Machine (SVM)}
+
+\begin{equation}
+	J(\theta)=\min_\theta C\sum_{i=1}^m\left[y^{(i)}\text{cost}_1(\theta^Tx^{i}) + (1-y^{(i)})\text{cost}_0(\theta^Tx^{(i)})\right]+\frac{1}{2}\sum_{i=1}^n\theta_j^2.
+\end{equation}
+
+The SVM is a \emph{large margin classifier}
+
+
+\end{document}

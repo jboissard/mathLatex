@@ -1,0 +1,155 @@
+\chapter{Intégrales}
+\section{Primitives et intégrales définies}
+$F(x)$ est primitive de $f(x)$, si $F'(x)=f(x)$
+\begin{eqnarray}
+	\int f(x)dx=F(x)+C
+\end{eqnarray}
+\section{Changement de variables dans les intégrales définies}
+si $F$ est primitive de $f$
+\begin{eqnarray}
+	\int f(g(x))g'(x)dx=F(g(x))+C
+\end{eqnarray}
+si $u=g(x)$ et $du=g'(x)dx$
+\begin{eqnarray}
+	\int f(u)du=F(u)+C
+\end{eqnarray}
+
+\begin{myExample}
+
+	\begin{eqnarray*}
+		\int\sqrt{5x+7}dx & u=5x+7 & du=5dx
+		\\
+		\int\sqrt u\frac{1}{5}du=\frac{1}{5}\frac{2}{3}u^{\frac{3}{2}}+C=\frac{2}{15}(5x+7)^{\frac{3}{2}}+C
+	\end{eqnarray*}
+	
+\end{myExample}
+
+\section{Symbole de sommation et aires}
+\underline{Notation:} $\sum_{k=0}^{n}=a_0+a_1+a_2+\dots+a_n$
+
+On peut approximer une intégrale en utilisant des rectangles sous la courbe.
+\begin{eqnarray*}
+	A=(x_1-x_0)f(x_0)+(x_2-x_1)f(x_1)+\dots+(x_n-x_{n-1})f(x_{n-1})
+	\\
+	A=\sum_{k=0}^{n}\Delta xf(x_k)=\Delta x\sum_{k=0}^nf(x_k)
+\end{eqnarray*}
+
+\section{Intégrale définie}
+\begin{eqnarray}
+	A=\int_a^bf(x)dx=F(b)-F(a)
+\end{eqnarray}
+
+\section{Théorème fondamental du calcul intégral}
+\begin{eqnarray}
+	\int_a^bf(x)dx=F(b)-F(a)
+\end{eqnarray}
+\begin{itemize}
+	\item si $f$ impaire ($f(-x)=-f(x)$):
+	\begin{eqnarray}
+		\int_{-a}^a f(x)dx=0
+	\end{eqnarray}
+	\item si $f$ paire ($f(x)=f(-x)$):
+	\begin{eqnarray}
+	\int_{-a}^af(x)dx=2\int_0^af(x)dx
+	\end{eqnarray}
+\end{itemize}
+	
+\section{Intégration numérique}
+
+Pour plus de détails sur les intégrations numériques, se référer au cours d'analyse numérique.
+\subsection{Méthode des trapèzes}
+\begin{eqnarray}
+	\int_a^bf(x)dx=\left(\frac{b-a}{n}\sum_{k=0}^nf(x_k)\right)-f(x_0)-f(x_n)
+\end{eqnarray}
+\subsection{Méthode de Simpson}
+\begin{eqnarray}
+	\int_a^bf(x)dx
+	=\frac{b-a}{3n}\left[f(x_0)+4f(x_1)+2f(x_2)+4f(x_3)+\dots+f(x_{n-2})+4f(x_{n-1})+f(x_n)\right]
+\end{eqnarray}
+avec $n$ pair.
+
+\chapter{Applications de l'intégrale définie}
+
+\section{Aires}
+\begin{eqnarray}
+	A=\int_a^b\left(g(x)-f(x)\right)dx
+\end{eqnarray}
+
+\section{Solides de révolution}
+\begin{eqnarray}
+	V=\pi\int_a^b(f(x)^2)dx
+\end{eqnarray}
+
+\section{Valeurs par les tubes cylindriques}
+\begin{eqnarray}
+	V=2\pi\int_a^bxf(x)dx
+\end{eqnarray}
+\begin{myExample}
+	Calculer le volume sous la paraboloïde: $f(x)=x^2+c$ avec $c>0$ délimitée par le disque $x^2+y^2=r^2$.
+	\\\\
+	On pose
+	\begin{eqnarray*}
+		V=2\pi\int_0^{r}xf(x)dx=
+		\\
+		2\pi\int_0^{r}x^3+cxdx=
+		\\
+		2\pi\left[\frac{x^4}{4}+c\frac{x^2}{2}\right]_0^r=
+		\\
+		\pi r^2\left[\frac{r^2}{2}+c\right]
+	\end{eqnarray*}
+	
+\end{myExample}
+
+\section{Valeurs d'après les sections transversales}
+\begin{eqnarray}
+	V=\int_a^bA(x)dx
+\end{eqnarray}
+
+\begin{myExample}
+	On veut calculer le volume d'une pyramide de base $a \times a$ et de hauteur $h$.
+	\\\\
+	%mettre schéma indispensable ici pour une bonne compréhension
+	On a\begin{eqnarray*}
+		A(x)=(2y)^2=4y^2
+	\end{eqnarray*}
+	En suivant un raisonnement géométrique, on a
+	\begin{eqnarray*}
+		\frac{y}{x}=\frac{\frac{1}{2}a}{h}
+		\\
+		\Rightarrow
+		y=\frac{ax}{2h}
+	\end{eqnarray*}
+	On peut donc écrire
+	\begin{eqnarray*}
+		A(x)=\frac{a^2x^2}{h^2}
+	\end{eqnarray*}
+	et donc
+	\begin{eqnarray*}
+		V=\int_0^h\frac{a^2x^2}{h^2}dx
+		\\
+		=\frac{a^2}{h^2}\int_0^hx^2dx
+		\\
+		=\frac{a^2}{h^2}\left[\frac{x^3}{3}\right]_0^h
+		\\
+		V=\frac{a^2}{3}h
+	\end{eqnarray*}
+\end{myExample}
+
+\section{Longueur d'arc et surface de révolution}
+\begin{eqnarray}
+	L_a^b=\int_a^b\sqrt{1+(f'(x))^2}dx
+\end{eqnarray}
+\subsection{Abscisse curviligne}
+\begin{eqnarray}
+	s(x)=\int_a^x\sqrt{1+(f'(t))^2}dt
+\end{eqnarray}
+et
+\begin{eqnarray}
+	ds=\sqrt{1+(f'(x))^2}dx
+\end{eqnarray}
+$\rightarrow$ approximation de la longueur.
+
+\section{Surface de révolution}
+\begin{eqnarray}
+	S=\int_a^b2\pi f(x)\sqrt{1+(f'(x))^2}dx
+\end{eqnarray}

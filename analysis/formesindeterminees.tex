@@ -1,0 +1,22 @@
+\chapter{Les formes indéterminées $\frac{0}{0}$ et $\frac{\infty}{\infty}$}
+\section{La règle de l'Hôpital}
+\begin{myTheorem}
+	Si\begin{eqnarray*}
+		\lim_{x \to c}f(x)=\lim_{x \to c}g(x)=0\text{ ou }\infty 
+	\end{eqnarray*}
+	et si $\lim_{x\to c}f'(x)/g'(x)$ existe, alors
+	\begin{eqnarray}
+		\lim_{x\to c}\frac{f(x)}{g(x)} = \lim_{x\to c}\frac{f'(x)}{g'(x)}.
+	\end{eqnarray}
+\end{myTheorem}
+
+\begin{myExample}
+	On veut calculer
+	\begin{eqnarray*}
+		\lim_{x\rightarrow0}\frac{\cos{(x)}+2x-1}{3x}
+	\end{eqnarray*}
+	On remarque qu'on tombe sur une forme indéterminée ($\frac{0}{0}$). En dérivant l'expression du haut et du bas on trouve
+	\begin{eqnarray}
+		\lim_{x\rightarrow0}\frac{\cos{(x)}+2x-1}{3x}=\lim_{x\rightarrow0}\frac{\sin{(x)}+2}{3}=\frac{2}{3}
+	\end{eqnarray}
+\end{myExample}

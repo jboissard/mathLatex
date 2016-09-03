@@ -1,0 +1,145 @@
+\chapter{Elementary Algebra}
+
+\section{Identities}
+\begin{eqnarray}
+	(a+b)^2=a^2+2ab+b^2\\
+	(a-b)^2=a^2-2ab+b^2\\
+	(a+b)^3=a^3+3a^2b+3ab^2+b^3\\
+	(a-b)^3=a^3-3a^2b+3ab^2+b^3\\
+	(a+b)^n={n\choose 0}a^n+{n\choose 1}a^{n-1}b+{n\choose 2}a^{n-2}b^2+\dots+{n\choose k}a^{n-k}b^k+\dots+{n\choose n}b^n\\
+	a^2-b^2=(a-b)(a+b)\\
+	a^2+b^2=(a-ib)(a+ib)\\
+	a^3-b^3=(a-b)(a^2+ab+b^2)=(a-b)\left(a+(1+i\sqrt3)\frac{b}{2}\right)\left(a+(1-i\sqrt3)\frac{b}{2}\right)\\
+	a^3-b^3=(a+b)(a^2-ab+b^2)=(a-b)\left(a-(1+i\sqrt3)\frac{b}{2}\right)\left(a-(1-i\sqrt3)\frac{b}{2}\right)\\
+	a^n-b^n=(a-b)(a^{n-1}+a^{n-2}b+\dots+ab^{n-2}+b^{n-1}\\
+	(a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ac
+\end{eqnarray}
+
+\section{Powers and roots}
+$a, b>0$ and $\sqrt[n]{a}$ is only defined for $n\in\mathbb N^*$.
+\begin{eqnarray}
+	a^0=1\\
+	a^p=a\cdot a^{p-1}\\
+	a^{-q}=\frac{1}{a^q}\\
+	a^{\frac{1}{q}}=\sqrt[q]{a}\\
+	a^{\frac{p}{q}}=\sqrt[q]{a^p}\\
+	a^pa^q=a^{p+q}\\
+	\frac{a^p}{a^q}=a^{p-q}\\
+	(a^p)^q=a^{p\cdot q}\\
+	a^pb^p=(ab)^p\\
+	\frac{a^p}{b^p}=\left(\frac{a}{b}\right)^p
+	\left(\sqrt[n]{a}\right)^n=a\\
+	\left(\sqrt[q]{a}\right)^p=\sqrt[q]{a^p}\\
+	\sqrt[p]{\sqrt[q]{a}}=\sqrt[pq]{a}=a^{\frac{1}{pq}}\\
+	\sqrt[p]{a}\sqrt[p]{b}=\sqrt[p]{ab}=(ab)^{\frac{1}{p}}\\
+	\frac{\sqrt[p]{a}}{\sqrt[p]{b}}=\sqrt[p]{\frac{a}{b}}=\frac{a}{b}^{\frac{1}{p}}
+\end{eqnarray}
+
+\section{Absolute Value}
+\begin{eqnarray}
+	|a|=\begin{cases}
+		a & a\geq0\\
+		-a & a<0
+	\end{cases}
+\end{eqnarray}
+
+\begin{eqnarray}
+	|a|\cdot |b|=|ab|\\
+	\frac{|a|}{|b|}=|\frac{a}{b}|\\
+	\sqrt{a^2}=|a|\\
+	\left ||a|-|b|\right |\leq |a+b|\leq |a| + |b|
+\end{eqnarray}
+\section{Means}
+\begin{tabular}{|l|c|c|}
+	\hline
+	\textbf{Mean} & \textbf{of two numbers $a_1$ and $a_2$} & \textbf{of $n$ numbers $a_1, a_2,\dots$}\\
+	\hline
+	Arithmetic (A) & $\frac{a_1+a_2}{2}$ & $\frac{\sum_{i=1}^na_i}{n}$\\
+	Weighted (W)& $\frac{\lambda_1a_1+\lambda_2a_2}{\lambda_1+\lambda_2}$ & $\frac{\sum_{i=1}^n\lambda_ia_i}{\sum_{i=1}^n\lambda_i}$\\
+	Geometric (G)& $\sqrt{a_1a_2}$ & $\sqrt[n]{\prod_{i=1}^na_i}$\\
+	Harmonic (H)& $\frac{2}{\frac{1}{a_1}+\frac{1}{a_23}}$ & $\frac{n}{{\sum_{i=1}^n\frac{1}{a_i}}}$\\
+	Quadratic (Q)& $\sqrt{\frac{a_1^2+a_2^2}{2}}$ & $\sqrt{\frac{\sum_{i=1}^na_i^2}{n}}$\\
+	\hline
+\end{tabular}
+
+Property
+\begin{eqnarray}
+	H\leq G\leq A\leq Q
+\end{eqnarray}
+
+\section{Polynomes}
+\begin{eqnarray}
+	P(x)=\sum_{k=0}^na_kx^k
+\end{eqnarray}
+\emph{Zeros} are $x_i$ that satisfies $P(x_i)=0$.
+\subsection{Second degree polynome}
+\begin{eqnarray}
+	f(x)=ax^2+bx+c&a\neq0
+\end{eqnarray}
+Can always be rewritten
+\begin{eqnarray}
+	f(x)=a(x-x_0)(x-x_1)
+\end{eqnarray}
+where $x_0$ and $x_1$ are the \emph{zeros} of $f(x)$.
+Zeros can be determined as follows
+\begin{eqnarray}
+	x_0,x_1=\frac{-b\pm\sqrt{\Delta}}{2a}\\
+	\Delta=b^2-4ac
+\end{eqnarray}
+
+For $\Delta$ we have the following properties
+\begin{eqnarray}
+	\text{if }\Delta>0\text{, then }x_0,x_1\in\mathbb R\\
+	\text{if }\Delta=0\text{, then }x_0=x_1\\
+	\text{if }\Delta<0\text{, then }x_0,x_1\in\mathbb C
+\end{eqnarray}
+\begin{myExample}
+	Find the zeros of $f(x)=x^2+7x+12$
+	
+	\begin{eqnarray*}
+		\Delta = 7^2-4\cdot1\cdot12=1\\
+		x_0=\frac{-7+1}{2}=-3\\
+		x_1=\frac{-7-1}{2}=-4
+	\end{eqnarray*}
+	And $f(x)$ can be rewritten
+	\begin{eqnarray*}
+		f(x)=(x+4)(x+3)
+	\end{eqnarray*}
+\end{myExample}
+
+\begin{myExample}
+	Find the zeros of $f(x)=2x^2-5x+\frac{25}{4}$
+	
+	\begin{eqnarray*}
+		\Delta = 5^2-4\cdot2\cdot\frac{25}{8}=-25\\
+		\sqrt{\Delta}=5i\\
+		x_0=\frac{5+5i}{4}=\frac{5}{4}(1+i)\\
+		x_1=\frac{5-5i}{4}=\frac{5}{4}(1-i)
+	\end{eqnarray*}
+	Thus $f(x)$ can be rewritten
+	\begin{eqnarray*}
+		f(x)=2\left(x-\frac{5}{4}(1+i)\right)\left(x+\frac{5}{4}(i-1)\right)
+	\end{eqnarray*}
+\end{myExample}
+
+\begin{myExample}
+	Find the zeros of $f(x)=x^2+x+1$
+	
+	\begin{eqnarray*}
+		\Delta = 1^2-4\cdot1\cdot1=-3\\
+		\sqrt{\Delta}=\sqrt{3}i\\
+		x_0=\frac{-1+\sqrt{3}i}{2}\\
+		x_1=-\frac{1+\sqrt3i}{2}
+	\end{eqnarray*}
+	Thus $f(x)$ can be rewritten
+	\begin{eqnarray*}
+		f(x)=\left(x+\frac{1+\sqrt3i}{2}\right)\left(x+\frac{1-\sqrt{3}i}{2}\right)
+	\end{eqnarray*}
+\end{myExample}
+La relation de Viète nous dit que pour $f(x)=ax^2+bx+c$, les zéros $x_0$ et $x_1$ satisfont
+\begin{eqnarray}
+	\begin{cases}
+		x_0+x_1=\frac{b}{a}\\
+		x_0x_1=\frac{c}{a}
+	\end{cases}
+\end{eqnarray}

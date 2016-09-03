@@ -1,0 +1,181 @@
+%!TEX root = /Users/Johan/Documents/University/Math/Gymnase/book.tex
+\chapter{Fonctions logarithmiques et exponentielles}
+\section{Fonctions réciproques}
+
+\begin{myDefinition}
+	\textbf{Injective} $f(x)$ et injective quand $f(a)\neq f(b)\Leftrightarrow a\neq b$, c-à-d la fonction n'a jamais deux fois la même valeur, elle est donc soit strictement croissante ou décroissante.
+\end{myDefinition}
+
+\begin{myDefinition}
+	\textbf{Réciproque} $y=f(x) \Leftrightarrow x=g(y)$, alors $g(y)$ est la fonction réciproque de $f(x)$.
+
+On note la réciproque de $f$, $f^{-1}(x)$.
+
+On a également la propriété suivante: $f(f^{-1}(x))=f^{-1}(f(x))=x$
+
+Si $g(x)=f^{-1}(x)$ alors $g'(x)=\frac{1}{f'(g(x))}$
+\end{myDefinition}
+
+\begin{myExample}
+	$f(x)=3x-5$, trouver la fonction réciproque.\\\\
+	On pose tout d'abord $y=f(x)$ et donc $y=3x-5$. Par raisonnement algébrique on trouve $x=\frac{y+5}{3}$ et donc $f^{-1}(x)=\frac{x+5}{3}$
+\end{myExample}
+\section{Logarithme naturel}
+\begin{myDefinition}
+	\begin{eqnarray}
+		\ln{x}=\int_1^x\frac{1}{t}dt
+	\end{eqnarray}
+	On en déduit tout de suite que
+	\begin{eqnarray}
+		\frac{d}{dx}\ln{x}=\frac{1}{x}
+	\end{eqnarray}
+\end{myDefinition}
+
+On a les propriétés suivantes:
+\begin{eqnarray}
+	\ln{(ab)}=ln{a}+\ln{b}
+	\\
+	\ln{\frac{a}{b}}=\ln{a}-\ln{b}
+	\\
+	\ln{a^b}=b\ln{a}
+\end{eqnarray}
+\subsection{Dérivation logarithmique}
+\begin{eqnarray*}
+	y=f(x)
+	\\
+	\ln y=\ln f(x)
+	\\
+	\frac{1}{y}y'=\frac{f'(x)}{f(x)}=(\ln{f(x)})'
+\end{eqnarray*}
+\begin{myExample}
+	\begin{eqnarray*}
+		y=\frac{(5x-4)^3}{\sqrt{2x-1}}
+		\\
+		\ln{y}=\ln{\left(\frac{(5x-4)^3}{\sqrt{2x-1}}\right)}
+		\\
+		=\ln{\left((5x-4)^3\right)}-\ln{\left(\sqrt{2x-1}\right)}
+		\\
+		=3\ln{(5x-4)}-\frac{1}{2}\ln{(2x-1)}
+	\end{eqnarray*}
+	Maintenant il est facile d'obtenir une dérivée.
+	\begin{eqnarray*}
+		(\ln{y})'=3\frac{5}{5x-4}-\frac{1}{2}\frac{2}{2x-1}=\frac{15}{5x-4}-\frac{1}{2x-1}
+	\end{eqnarray*}
+\end{myExample}
+\section{Fonction exponentielle}
+\begin{myDefinition}
+	La fonction exponentielle est la fonction réciproque du logarithme.
+	\begin{eqnarray}
+		e^x=\exp{x}=y \Leftrightarrow x=\ln y
+	\end{eqnarray}
+	On a donc 
+	\begin{eqnarray}
+		\exp{(\ln{y})}=\ln{(e^y)}=y
+	\end{eqnarray}
+	Notons que $e^1=e\backsimeq 2.71828\dots$
+\end{myDefinition}
+On a les relations sivantes
+\begin{eqnarray}
+	e^pe^q=e^{p+q}
+	\\(e^{p})^r=e^{pr}
+	\\
+	\label{eq:expdiff}(e^x)'=e^x
+	\\
+	(e^u)^r=u'e^u
+	\end{eqnarray}
+Notez l'équation \ref{eq:expdiff} qui est particulièrement intéressante. L'exponentielle est la seule fonction à posséder cette propriété; $f(x)=f'(x)$.
+\section{intégration}
+\begin{eqnarray}
+	\int\frac{1}{u}du=\ln |u|+C
+	\\
+	\int e^udu=\frac{e^u}{u'}+C
+	\\
+	\int\tan{(u)}du=-\ln{|\cos{u}|}+C
+	\\
+	\int\cot{u}du=\ln{|\cos{u}|}+C
+	\\
+	\int\sec{u}du=\ln{|\sec{u}+\tan{u}|}+C
+	\\
+	\int\csc{u}du=\ln{|\csc{u}+\cot{u}|}+C
+\end{eqnarray}
+\textbf{Rappel:}
+\begin{eqnarray}
+	\tan^{-1}{u}=\cot{u}
+	\\
+	\sin^{-1}{u}=\csc{u}
+	\\
+	\cos^{-1}{u}=\sec{u}
+\end{eqnarray}
+
+\section{Fonctions exponentielles et logarithmes de bases quelconque}
+\begin{eqnarray}
+	a^x=e^{x\ln{(a)}}
+	\\
+	(a^x)'=a^x\ln{a}
+	\\
+	(a^u)'=a^u\ln{(a)}u'
+	\\
+	\int a^xdx=\frac{a^x}{\ln{(a)}}
+	\\
+	\int a^udx=\frac{a^u}{\ln{(a)}u'}
+\end{eqnarray}
+
+\begin{eqnarray}
+	y=\log_ax\Leftrightarrow x=a^y
+	\\
+	\log_ax=\frac{\ln x}{\ln a}
+\end{eqnarray}
+
+\begin{eqnarray}
+	(\log_ax)'=\left(\frac{ln x}{\ln a}\right)'=\frac{1}{\ln(a)}\frac{1}{x}
+\end{eqnarray}
+
+Pour prouver que $\log_ax=\frac{\ln{x}}{\ln{a}}$, on part de
+\begin{eqnarray*}
+	a^y=x
+\end{eqnarray*}
+Par définition, on a
+\begin{eqnarray*}
+	\log_a{a^y}=y=\log_a x
+\end{eqnarray*}
+Mais aussi
+\begin{eqnarray*}
+	\ln{a^y}=y\ln{a}=\ln{x}
+\end{eqnarray*}
+et donc
+\begin{eqnarray*}
+	y=\frac{\ln{x}}{\ln{a}}=\log_ax
+\end{eqnarray*}
+Notons que ce résultat se généralise aisément pour obtenir
+\begin{eqnarray}
+	\log_a{x}=\frac{\log_bx}{\log_ba}
+\end{eqnarray}
+On peut vérfier le théorème précédent de la façon suivante
+\begin{eqnarray*}
+	\ln{(x)}=\log_a{(x)}\ln{(a)}=\ln{(a^{\log_a{(x)}})}\\
+	x=a^{\log_a{(x)}}=x
+\end{eqnarray*}
+
+\section{Loi de croissance}
+\begin{eqnarray}
+	y(t)=y_0e^{kt}
+\end{eqnarray}
+où $y_0$ est la valeur initiale, à $t=0$. $y_0$ a la même unité que $y$.
+$k$ est une constante d'unité $[\frac{1}{s}]$, si elle est multipliée au temps $t$. L'exposant, ici $kt$, n'a jamais d'unité.
+
+\section{Factorial}
+\begin{equation}
+	n! = \prod_{k=1}^n k  = n\cdot(n-1)\cdot(n-2)...\cdot1
+\end{equation}
+where $k\in\mathbb N$
+
+\subsection{Stirling's Approximation}
+for large values of $n$, $n!$ can be approximated as following
+\begin{equation}
+	n! \approx \sqrt{2\pi n}\left(\frac{n}{e}\right)^n.
+\end{equation}
+
+\subsection{Binomial Coefficients}
+\begin{equation}
+	\binom nk = \frac{n!}{(n-k)!k!}
+\end{equation}
