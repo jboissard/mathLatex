@@ -1,3 +1,11 @@
+\subsection{Le nombre d'or / Golden Ratio}
+\begin{eqnarray}
+	\label{eq:goldenratio}
+	\varphi=\frac{\sqrt5 + 1}{2}\\
+	\frac{1}{\varphi}=\varphi - 1\\
+	\varphi \approx 1.61803\,39887\ldots\,
+\end{eqnarray}
+
 \begin{equation}
     \varphi = \frac{1+\sqrt{5}}{2}
 \end{equation}
@@ -12,3 +20,26 @@
     \varphi* &=& \frac{1-\sqrt{5}}{2} \\
     \frac{1}{\varphi*} &=& \varphi
 \end{eqnarray}
+
+\subsection{Fibonnacci numbers}
+In mathematics, the Fibonacci numbers are the numbers in the following sequence:
+\begin{eqnarray}
+	0, 1, 1, 2, 3, 5, 8, 13, 21,\dots
+\end{eqnarray}
+By definition, the first two Fibonacci numbers are 0 and 1, and each remaining number is the sum of the previous two. Some sources omit the initial 0, instead beginning the sequence with two 1s.
+
+Which can be rewritten
+\begin{eqnarray}
+	\begin{cases}
+		u_{n}=u_{n-1}+u_{n-2} & n\geq2\\
+		u_0=0\\
+		u_1=1
+	\end{cases}
+\end{eqnarray}
+
+\subsubsection{Relation to the Golden Ratio}
+\begin{eqnarray}
+	u_n=\frac{\varphi^n-(1-\varphi)^n}{\sqrt{5}}=\frac{\varphi^n-(-1/\varphi)^n}{\sqrt{5}}=\frac{(1+\sqrt{5})^n-(1-\sqrt{5})^n}{2^n\sqrt{5}}
+\end{eqnarray}
+where $\varphi$ is the golden ratio (Equation: \ref{eq:goldenratio}).
+
